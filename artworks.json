@@ -36,10 +36,10 @@
       "date_en": "um 1465",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Dn4ZPeRLaK/dieric-bouts-d-ae-1410/perle-von-brabant-anbetung-der-koenige-waf-76",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--9MECyWRM--/q_60/w_400/artworks/DIERIC-BOUTS-D-AE-1410_PERLE-VON-BRABANT-ANBETUNG-DER-KOENIGE-WAF-76_886145_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "브라반트의 진주: 동방박사의 경배",
       "artist_ko": "디르크 바우츠",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 디르크 바우츠가 제작한 소형 이동식 삼면화 '브라반트의 진주'의 중앙 패널입니다.\n• 감상 포인트: 인물들의 차분하고 절제된 표정과 맑고 투명한 빛의 표현, 그리고 무너진 마구간 벽 너머로 보이는 서정적인 풍경이 특징입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9651",
@@ -309,10 +309,10 @@
       "date_en": "um 1627",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jpxepgB4J7/nicolas-poussin-1594/apoll-und-daphne-2334",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--WGnq4f4e--/q_60/w_400/artworks/NICOLAS-POUSSIN-1594_APOLL-UND-DAPHNE-2334_394138_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "아폴론과 다프네",
       "artist_ko": "니콜라 푸생",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[지하층 EG Saal XII] 프랑스 고전주의 회화의 거장 니콜라 푸생이 젊은 시절 그린 신화화로, 아폴론의 구애를 피해 월계수 나무로 변하는 다프네의 극적인 순간을 담았습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4163",
@@ -322,10 +322,10 @@
       "date_en": "1622",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Dj4moXEL5A/peter-paul-rubens-1577/apotheose-heinrichs-iv-und-proklamation-der-regentschaft-maria-de-medicis-skizze-zum-medici-zyklus-102",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--C0bKq7df--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_APOTHEOSE-HEINRICHS-IV-UND-PROKLAMATION-DER-REGENTSCHAFT-MARIA-DE-MEDICIS-SKIZZE-ZUM-MEDICI-ZYKLUS-102_902145_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "앙리 4세의 신격화와 마리 드 메디시스의 섭정 선포 (메디치 연작 스케치)",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 12] 루벤스가 파리 뤽상부르 궁전을 장식할 '마리 드 메디시스의 생애' 대작 연작(현 루브르 박물관 소장)을 위해 직접 그린 유화 스케치입니다.\n• 감상 포인트: 완성작보다 오히려 루벤스 본인의 빠르고 즉흥적인 붓질과 천재적인 구도 설계를 가장 생생하게 감상할 수 있는 보물 같은 연작입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8831",
@@ -348,10 +348,10 @@
       "date_en": "1635/39",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/apG9B2g4Zn/rembrandt-harmensz-van-rijn-1606/auferstehung-christi-397",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--qvJmlguA--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_AUFERSTEHUNG-CHRISTI-397_906157_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 부활",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 렘브란트 수난 연작 중 천사가 무덤 뚜껑을 열자 눈부신 섬광과 함께 로마 병사들이 놀라 쓰러지는 극적인 장면입니다.\n• 감상 포인트: 빛의 폭발적인 대비와 무덤에서 깨어나는 그리스도의 고요한 모습이 강한 대조를 이룹니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8852",
@@ -466,7 +466,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Znxw0ZvLXg/david-teniers-d-j-1610/bauernschenke-5290",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--GuVSzM-i--/q_60/w_400/artworks/DAVID-TENIERS-D-J-1610_BAUERNSCHENKE-5290_880159_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "다비트 테니어르스 (아들)",
       "description_ko": "",
       "needs_translation": true
     },
@@ -492,7 +492,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/wq4jE6EGWo/david-teniers-d-j-1610/bauernstube-1835",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--UdeKIPvB--/q_60/w_400/artworks/DAVID-TENIERS-D-J-1610_BAUERNSTUBE-1835_892185_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "다비트 테니어르스 (아들)",
       "description_ko": "",
       "needs_translation": true
     },
@@ -582,10 +582,10 @@
       "date_en": "um 1500",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Y0GRY2XLRX/albrecht-duerer-1471/beweinung-christi-glimsche-beweinung-704",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--wkFZf0kd--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_BEWEINUNG-CHRISTI-GLIMSCHE-BEWEINUNG-704_1404358_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 애도 (글림의 애도)",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 알브레히트 뒤러가 1500년경 뉘른베르크의 금세공인 알브레히트 글림의 주문으로 그린 제단화입니다.\n• 감상 포인트: 대각선으로 놓인 예수의 시신을 중심으로 성모와 제자들이 비통에 잠겨 있으며, 하단 구석에는 작게 그려진 기증자 가족들이 자리하고 있습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4198",
@@ -765,7 +765,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/apG9V7n4Zn/gerard-ter-borch-d-j-1617/bildnis-einer-dame-8129",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Hh4FMcKV--/q_60/w_400/artworks/GERARD-TER-BORCH-D-J-1617_BILDNIS-EINER-DAME-8129_976373_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "헤라르트 테르 보르흐",
       "description_ko": "",
       "needs_translation": true
     },
@@ -830,7 +830,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/6kLavZ9G8V/jean-honore-fragonard-1732/bildnis-einer-jungen-dame-marie-madeleine-guimard-15286",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--l3lcjilk--/q_60/w_400/artworks/JEAN-HONORE-FRAGONARD-1732_BILDNIS-EINER-JUNGEN-DAME-MARIE-MADELEINE-GUIMARD-15286_391152_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "장오노레 프라고나르",
       "description_ko": "",
       "needs_translation": true
     },
@@ -856,7 +856,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/53470nKx9e/gerard-ter-borch-d-j-1617/bildnis-eines-herrn-8128",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--rN8lzM2k--/q_60/w_400/artworks/GERARD-TER-BORCH-D-J-1617_BILDNIS-EINES-HERRN-8128_976375_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "헤라르트 테르 보르흐",
       "description_ko": "",
       "needs_translation": true
     },
@@ -868,10 +868,10 @@
       "date_en": "1500",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/o5xrQgP47X/albrecht-duerer-1471/bildnis-eines-jungen-mannes-694",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Jsv77C1j--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_BILDNIS-EINES-JUNGEN-MANNES-694_874165_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "젊은 남자의 초상",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 뒤러가 1500년에 그린 초상화로, 모피 코트를 입은 자화상과 같은 시기의 걸작입니다.\n• 감상 포인트: 녹색 배경 위에서 붉은 깃의 모피 외투를 입은 인물의 섬세한 머리카락과 내면의 긴장감을 탁월하게 포착했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7496",
@@ -985,10 +985,10 @@
       "date_en": "1499",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/7yxYbewLYm/albrecht-duerer-1471/bildnistriptychon-des-oswolt-krel-mittelteil-oswolt-krel-waf-230",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--I7Y4xN5D--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_BILDNISTRIPTYCHON-DES-OSWOLT-KREL-MITTELTEIL-OSWOLT-KREL-WAF-230_1400487_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "오스볼트 크렐의 초상 삼면화 (중앙)",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 뒤러가 1499년 린다우 출신의 부유한 상인 오스볼트 크렐을 그린 강렬한 초상화입니다.\n• 감상 포인트: 붉은 휘장 앞에서 날카로운 눈빛으로 정면을 바라보는 인물의 기백이 압도적이며, 양옆 날개에는 문장을 든 야인(Wilder Mann)들이 배치되어 있습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9470",
@@ -1089,10 +1089,10 @@
       "date_en": "1633",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Qlx2QE14Xq/rembrandt-harmensz-van-rijn-1606/brustbild-eines-mannes-in-orientalischem-kostuem-421",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--PEURTbXd--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_BRUSTBILD-EINES-MANNES-IN-ORIENTALISCHEM-KOSTUEM-421_800188_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "동방 의상을 입은 남자의 흉상",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal XI] 렘브란트가 1633년 터번과 화려한 동방풍 외투를 걸친 모델을 통해 빛과 질감의 효과를 탐구한 트로니(인물 습작)입니다.\n• 감상 포인트: 황금빛 터번의 섬세한 주름과 인물의 위엄 있는 표정이 어두운 배경 속에서 강렬하게 부각됩니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4985",
@@ -1258,10 +1258,10 @@
       "date_en": "um 1455",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/53470Zmx9e/rogier-van-der-weyden-1399/columba-altar-darbringung-im-tempel-waf-1191",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--0Q7YCe9K--/q_60/w_400/artworks/ROGIER-VAN-DER-WEYDEN-1399_COLUMBA-ALTAR-DARBRINGUNG-IM-TEMPEL-WAF-1191_846147_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성 콜룸바 제단화: 성전 봉헌",
       "artist_ko": "로히어르 판 데르 베이던",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 성 콜룸바 제단화의 오른쪽 날개 패널로, 아기 예수를 예루살렘 성전에 바치는 의식을 담고 있습니다.\n• 감상 포인트: 고딕 성당의 웅장한 아치와 기둥을 통해 깊은 공간감을 연출했으며, 중앙 패널의 경배 장면과 유기적인 시각적 흐름을 이룹니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9412",
@@ -1271,10 +1271,10 @@
       "date_en": "um 1455",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A0GOlar4dp/rogier-van-der-weyden-1399/columba-altar-verkuendigung-waf-1190",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--yWltwZvR--/q_60/w_400/artworks/ROGIER-VAN-DER-WEYDEN-1399_COLUMBA-ALTAR-VERKUENDIGUNG-WAF-1190_846145_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성 콜룸바 제단화: 수태고지",
       "artist_ko": "로히어르 판 데르 베이던",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 성 콜룸바 제단화의 왼쪽 날개 패널로, 대천사 가브리엘이 성모 마리아에게 잉태 소식을 전하는 장면입니다.\n• 감상 포인트: 아늑한 북유럽 부르주아 가정집처럼 꾸며진 실내 공간과 백합 꽃병, 정교한 원근법 묘사가 돋보입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5789",
@@ -1297,10 +1297,10 @@
       "date_en": "1527",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/7yxYmBnxYm/jan-gossaert-gen-mabuse-1478/danae-38",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--9sj72_fV--/q_60/w_400/artworks/JAN-GOSSAERT-GEN-MABUSE-1478_DANAE-38_874182_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "다나에",
+      "artist_ko": "얀 호사르트 (마뷔즈)",
+      "description_ko": "[Saal V] 플랑드르 로마니즘의 대표 화가 얀 호사르트(마뷔즈)가 1527년 그린 신화화입니다.\n• 감상 포인트: 탑에 갇힌 다나에에게 황금비로 변해 내려오는 제우스의 모습을 정교한 대리석 원형 건축과 화려한 푸른 드레스 묘사로 담아냈습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8624",
@@ -1466,10 +1466,10 @@
       "date_en": "um 1645",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/8eGVjDoGWQ/gerard-dou-1613/das-tischgebet-der-spinnerin-588",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Esy3P1jw--/q_60/w_400/artworks/GERARD-DOU-1613_DAS-TISCHGEBET-DER-SPINNERIN-588_897146_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "실 잣는 여인의 식사 기도",
+      "artist_ko": "헤라르트 다우",
+      "description_ko": "[Kabinett 22] 렘브란트의 첫 제자 헤라르트 다우가 창가로 스며드는 은은한 빛 아래 검소한 식탁 앞에서 기도하는 노파의 주름과 정물을 극세밀화 기법(페인스힐더르)으로 묘사한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8557",
@@ -1505,10 +1505,10 @@
       "date_en": "1661/63",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/QrLWzN0xNO/jan-steen-1626/der-aerztliche-besuch-158",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--txrefaGF--/q_60/w_400/artworks/JAN-STEEN-1626_DER-AERZTLICHE-BESUCH-158_938151_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "의사의 왕진",
       "artist_ko": "얀 스테인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 22] 네덜란드 풍속화의 대가 얀 스테인이 상사병에 걸린 젊은 여인을 진찰하는 의사의 모습을 통해 당시 희극 연극의 한 장면을 유머러스하게 풍자한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7777",
@@ -1518,10 +1518,10 @@
       "date_en": "um 1638",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/gR4k3B94Ee/peter-paul-rubens-1577/der-bethlehemitische-kindermord-572",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s---5bAF46m--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DER-BETHLEHEMITISCHE-KINDERMORD-572_795138_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "베들레헴의 유아 학살",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII] 루벤스 말년(1638년경)에 제작된 비극적인 종교화로, 폭력에 맞서 아이들을 지키려는 어머니들의 처절한 저항을 그렸습니다.\n• 감상 포인트: 말년의 한층 자유롭고 격정적인 필치와 강렬한 색채가 전쟁의 비극을 고발하는 듯한 울림을 줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6764",
@@ -1596,10 +1596,10 @@
       "date_en": "1621/22",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/01G1EAeGkE/peter-paul-rubens-1577/der-engelsturz-306",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--8Ozv5W4l--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DER-ENGELSTURZ-306_895137_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "반역 천사들의 추락",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII] 대천사 미카엘이 하늘에서 반역한 루시퍼와 타락 천사들을 지옥으로 내쫓는 묵시록의 장면입니다.\n• 감상 포인트: 빛을 발하는 미카엘의 갑옷과 아래로 곤두박질치는 괴물 형상의 타락 천사들이 수직적인 하강 에너지를 만들어냅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4396",
@@ -1623,7 +1623,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Qm45RBjxNo/domenico-tintoretto-domenico-robusti-1560/der-gonzaga-zyklus-der-einzug-des-infanten-philipp-von-spanien-in-mantua-7302",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--cmfkfJNI--/q_60/w_400/artworks/DOMENICO-TINTORETTO-DOMENICO-ROBUSTI-1560_DER-GONZAGA-ZYKLUS-DER-EINZUG-DES-INFANTEN-PHILIPP-VON-SPANIEN-IN-MANTUA-7302_898136_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "도메니코 틴토레토",
       "description_ko": "",
       "needs_translation": true
     },
@@ -1765,10 +1765,10 @@
       "date_en": "nach 1484",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlnllGWv/rogier-van-der-weyden-1399/der-hl-lukas-zeichnet-die-madonna-waf-1188",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--F-sVgO2Y--/q_60/w_400/artworks/ROGIER-VAN-DER-WEYDEN-1399_DER-HL-LUKAS-ZEICHNET-DIE-MADONNA-WAF-1188_906143_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성모 마리아를 그리는 성 루가",
       "artist_ko": "로히어르 판 데르 베이던",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 화가 조합의 수호성인인 복음사가 루가가 성모 마리아의 초상을 스케치하는 장면을 그린 작품입니다.\n• 감상 포인트: 보스턴 미술관에 소장된 판 데르 베이던의 원작을 충실히 계승한 작품으로, 창밖으로 펼쳐진 강과 도시 풍경이 섬세합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9979",
@@ -1778,10 +1778,10 @@
       "date_en": "um 1675",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZKGPbV2xgA/bartolome-esteban-murillo-1618/der-hl-thomas-von-villanueva-heilt-einen-lahmen-52",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--S31u2TU7--/q_60/w_400/artworks/BARTOLOME-ESTEBAN-MURILLO-1618_DER-HL-THOMAS-VON-VILLANUEVA-HEILT-EINEN-LAHMEN-52_807148_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "병자를 치유하는 빌라누에바의 성 토마스",
       "artist_ko": "바르톨로메 에스테반 무리요",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal X] 스페인 화가 무리요가 자선과 구제의 성인 토마스가 교회 문앞에서 앉은뱅이를 일으켜 세우는 기적을 부드러운 빛과 따뜻한 색채로 묘사한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6368",
@@ -1791,10 +1791,10 @@
       "date_en": "um 1621",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/7yxYmWNxYm/peter-paul-rubens-1577/der-hoellensturz-der-verdammten-320",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s---GD-u-il--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DER-HOELLENSTURZ-DER-VERDAMMTEN-320_911165_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "저주받은 자들의 지옥 추락",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII 핵심 걸작] 수백 명의 나체 인물들이 거대한 폭포처럼 얽혀 지옥의 심연으로 쏟아져 내리는 루벤스의 대작입니다.\n• 감상 포인트: 인체의 모든 뒤틀림과 중력감을 극한까지 밀어붙인 바로크 역동성의 극치를 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8877",
@@ -1805,7 +1805,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/gR4k3A94Ee/gabriel-metsu-1629/der-koenig-trinkt-871",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--h8Q26GKG--/q_60/w_400/artworks/GABRIEL-METSU-1629_DER-KOENIG-TRINKT-871_938154_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "가브리엘 메취",
       "description_ko": "",
       "needs_translation": true
     },
@@ -1830,10 +1830,10 @@
       "date_en": "1629",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jpxeVV2LJ7/anthonis-van-dyck-1599/der-maler-jan-de-wael-und-seine-frau-geertruid-de-jode-596",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--8ygEaeHA--/q_60/w_400/artworks/ANTHONIS-VAN-DYCK-1599_DER-MALER-JAN-DE-WAEL-UND-SEINE-FRAU-GEERTRUID-DE-JODE-596_934158_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "화가 얀 데 발과 아내 헤이르트라위트 데 요데",
       "artist_ko": "안토니 반 다이크",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VI] 반 다이크가 안트베르펜의 동료 화가 부부를 그린 이중 초상화입니다.\n• 감상 포인트: 검은 예복의 차분한 색조 속에서 두 부부의 다정한 눈맞춤과 자연스러운 손의 위치가 깊은 신뢰와 애정을 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7996",
@@ -1934,10 +1934,10 @@
       "date_en": "um 1612/13",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/wE4KXQExZ5/peter-paul-rubens-1577/der-sterbende-seneca-305",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--ZYhMWw5s--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DER-STERBENDE-SENECA-305_1334245_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "죽어가는 세네카",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII] 로마 네로 황제의 명령으로 자결을 택한 스토아 철학자 세네카의 마지막 순간을 그린 작품입니다.\n• 감상 포인트: 고대 로마 조각상을 연구한 루벤스가 피를 흘리며 욕조에 서서 제자들에게 마지막 가르침을 구술하는 철학자의 고귀한 정신력을 묘사했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5554",
@@ -1987,7 +1987,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlyMzLWv/gerard-ter-borch-d-j-1617/der-verweigerte-brief-206",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--pw1ytEzN--/q_60/w_400/artworks/GERARD-TER-BORCH-D-J-1617_DER-VERWEIGERTE-BRIEF-206_935154_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "헤라르트 테르 보르흐",
       "description_ko": "",
       "needs_translation": true
     },
@@ -2051,10 +2051,10 @@
       "date_en": "um 1533",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/9pL3BJExeb/hans-holbein-d-j-1497/derich-born-1083",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Ej1I4-XN--/q_60/w_400/artworks/HANS-HOLBEIN-D-J-1497_DERICH-BORN-1083_938144_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "데리히 보른의 초상",
       "artist_ko": "한스 홀바인 (아들)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IIa 진열장] 한스 홀바인(아들)이 런던 활동 시절 독일 한자동맹 상인 데리히 보른을 그린 정밀 초상화입니다.\n• 감상 포인트: 한 손으로 크기를 가늠할 수 있는 작은 원형 패널 안에 인물의 생생한 표정과 모피·실크의 질감을 완벽히 응축했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5391",
@@ -2090,10 +2090,10 @@
       "date_en": "um 1618",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/2mxqZgML8b/peter-paul-rubens-1577/die-amazonenschlacht-324",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--G_9fIrbI--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DIE-AMAZONENSCHLACHT-324_762157_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "아마조네스 전투",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII 핵심 걸작] 그리스 영웅 테세우스와 여전사 아마조네스 군대가 테르모돈 강 다리 위에서 벌이는 격전을 그렸습니다.\n• 감상 포인트: 다리 위에서 말과 전사들이 엉켜 강물로 추락하는 역동적인 타원형 구도와 불타는 도시의 연기가 장대한 서사시를 연출합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6699",
@@ -2103,10 +2103,10 @@
       "date_en": "1646",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/k2xnEVN4Pd/rembrandt-harmensz-van-rijn-1606/die-anbetung-der-hirten-393",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--3ZY1PXC7--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_DIE-ANBETUNG-DER-HIRTEN-393_725138_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "목자들의 경배",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 렘브란트 수난 연작 중 하나로, 어두운 마구간 속에서 아기 예수로부터 뿜어져 나오는 신비로운 빛을 그렸습니다.\n• 감상 포인트: 등불을 든 목자들과 성모 요셉의 얼굴을 비추는 따뜻한 황금빛 명암 대비(키아로스쿠로)가 경건한 고요함을 자아냅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9037",
@@ -2129,10 +2129,10 @@
       "date_en": "1753",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlyOeLWv/giovanni-battista-tiepolo-1696/die-anbetung-der-koenige-1159",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--hbznYWRa--/q_60/w_400/artworks/GIOVANNI-BATTISTA-TIEPOLO-1696_DIE-ANBETUNG-DER-KOENIGE-1159_774179_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "동방박사의 경배",
       "artist_ko": "조반니 바티스타 티에폴로",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal X 핵심 걸작] 18세기 베네치아 로코코의 거장 조반니 바티스타 티에폴로가 뷔르츠부르크 레지덴츠 궁전 체류 시절 제작한 대제단화입니다.\n• 감상 포인트: 눈부신 햇살 아래 화려한 동방의 의상을 입은 왕들과 수행원, 낙타, 고전 폐허 기둥이 연극 무대처럼 장엄하고 경쾌하게 펼쳐집니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8454",
@@ -2207,10 +2207,10 @@
       "date_en": "um 1515",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/8eGVD2wxWQ/tiziano-vecellio-gen-tizian/die-eitelkeit-der-welt-483",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--UskZayRG--/q_60/w_400/artworks/TIZIANO-VECELLIO-GEN-TIZIAN_DIE-EITELKEIT-DER-WELT-483_577185_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "허영 (바니타스)",
       "artist_ko": "티치아노 베첼리오",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V] 젊은 시절의 티치아노가 베네치아의 이상적인 미인상을 통해 세속적 아름다움과 부의 덧없음을 표현한 작품입니다.\n• 감상 포인트: 여인이 쥔 거울 속에는 보석과 동전, 그리고 하녀의 모습이 비치며 화려한 외면 뒤에 숨겨진 인생의 무상함을 경고합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8828",
@@ -2338,7 +2338,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/rqxNroPxvW/filippino-lippi-1457/die-fuerbitte-christi-und-mariae-1074",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--_g192dlh--/q_60/w_400/artworks/FILIPPINO-LIPPI-1457_DIE-FUERBITTE-CHRISTI-UND-MARIAE-1074_683139_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "필리피노 리피",
       "description_ko": "",
       "needs_translation": true
     },
@@ -2402,10 +2402,10 @@
       "date_en": "1633/1635",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/apG9nw94Zn/rembrandt-harmensz-van-rijn-1606/die-heilige-familie-1318",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--ZoPCTb6w--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_DIE-HEILIGE-FAMILIE-1318_725143_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성가족",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 20대 후반의 렘브란트가 그린 따뜻하고 소박한 네덜란드 가정집 분위기의 성가족화입니다.\n• 감상 포인트: 목수 일을 잠시 멈춘 요셉과 잠든 아기 예수를 사랑스럽게 내려다보는 성모 마리아의 모습이 지극히 인간적이고 친근합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4536",
@@ -2558,10 +2558,10 @@
       "date_en": "um 1520/24",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/y7GE1yeGPV/matthias-gruenewald-mathis-gothart-nith-1475/die-hll-erasmus-und-mauritius-1044",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--5d6xtzfl--/q_60/w_400/artworks/MATTHIAS-GRUENEWALD-MATHIS-GOTHART-NITH-1475_DIE-HLL-ERASMUS-UND-MAURITIUS-1044_914191_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성 에라스무스와 성 마우리티우스",
       "artist_ko": "마티아스 그뤼네발트",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II 핵심 걸작] 이젠하임 제단화로 유명한 마티아스 그뤼네발트의 걸작으로, 두 성인의 극적인 대화를 묘사했습니다.\n• 감상 포인트: 화려한 주교 예복을 입은 백인 성인 에라스무스와 은빛 갑옷을 입은 흑인 성인 마우리티우스의 질감 대비, 그리고 역동적인 손짓이 압권입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8147",
@@ -2637,7 +2637,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xln3gGWv/gabriel-metsu-1629/die-koechin-624",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--wnzKILN0--/q_60/w_400/artworks/GABRIEL-METSU-1629_DIE-KOECHIN-624_939142_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "가브리엘 메취",
       "description_ko": "",
       "needs_translation": true
     },
@@ -2664,7 +2664,7 @@
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--2zCYbQnA--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_DIE-KREUZAUFRICHTUNG-394_906154_CC-BY-SA_BSTGS.jpg",
       "title_ko": "십자가를 세움",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "[Saal IX 핵심 걸작] 렘브란트가 오라녜 공 프레데리크 헨드리크의 주문으로 제작한 '그리스도 수난 연작' 중 하나입니다.\n• 감상 포인트: 어둠 속에서 대각선으로 세워지는 십자가의 예수에게 강렬한 빛이 집중되며, 십자가 발치에서 직접 십자가를 들어 올리는 푸른 베레모의 남자는 렘브란트 자신의 자화상입니다. 예술가 스스로가 그리스도의 수난에 동참하고 있음을 고백하는 장면입니다.",
+      "description_ko": "[Saal IX 핵심 걸작] 렘브란트가 오라녜 공 프레데리크 헨드리크의 주문으로 제작한 '그리스도 수난 연작' 중 하나입니다.\n• 감상 포인트: 어둠 속에서 대각선으로 세워지는 십자가의 예수에게 강렬한 빛이 집중되며, 십자가 발치에서 직접 십자가를 들어 올리는 푸른 베레모의 남자는 렘브란트 자신의 자화상입니다.",
       "needs_translation": false
     },
     {
@@ -2714,10 +2714,10 @@
       "date_en": "1622",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/534703Zx9e/peter-paul-rubens-1577/die-landung-in-marseille-skizze-zum-medici-zyklus-95",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--gIW0E_2f--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_DIE-LANDUNG-IN-MARSEILLE-SKIZZE-ZUM-MEDICI-ZYKLUS-95_902139_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "마르세유 상륙 (메디치 연작 스케치)",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 12] 프랑스 왕비 마리 드 메디시스가 마르세유 항구에 도착할 때 바다의 신 넵투누스와 바다의 요정 네레이데스들이 배를 맞이하는 화려한 유화 스케치입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "12115",
@@ -2766,10 +2766,10 @@
       "date_en": "1516",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/QrLWeqA4NO/albrecht-duerer-1471/die-muttergottes-mit-der-nelke-4772",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--ZGi9p_hV--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_DIE-MUTTERGOTTES-MIT-DER-NELKE-4772_1469354_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "카네이션을 든 성모자",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IV] 뒤러가 1516년에 그린 성모자화로, 다정한 어머니와 아이의 모습을 어두운 배경 위에 부각했습니다.\n• 감상 포인트: 성모의 단아한 얼굴 표정과 섬세한 베일 묘사, 아기 예수가 쥔 배와 성모가 든 카네이션의 상징성이 어우러집니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6367",
@@ -2779,10 +2779,10 @@
       "date_en": "um 1506",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/PdxzE3V4w5/lorenzo-lotto-1480/die-mystische-vermaehlung-der-hl-katharina-32",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--3-v3Cu5r--/q_60/w_400/artworks/LORENZO-LOTTO-1480_DIE-MYSTISCHE-VERMAEHLUNG-DER-HL-KATHARINA-32_608142_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "성 카타리나의 신비로운 결혼",
+      "artist_ko": "로렌초 로토",
+      "description_ko": "[Kabinett 4] 베네치아 화파의 독창적 화가 로렌초 로토가 아기 예수가 알렉산드리아의 성녀 카타리나에게 반지를 끼워주는 장면을 섬세한 심리 묘사와 부드러운 빛으로 그린 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6400",
@@ -2805,10 +2805,10 @@
       "date_en": "1636",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/9pL3ERl4eb/rembrandt-harmensz-van-rijn-1606/die-opferung-isaaks-438",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--bZa1uEp0--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_DIE-OPFERUNG-ISAAKS-438_885137_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "이삭의 희생",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 아브라함이 아들 이삭을 제물로 바치려는 찰나 천사가 나타나 팔을 붙잡는 구약 성경의 결정적 순간입니다.\n• 감상 포인트: 아브라함의 손에서 떨어지는 칼이 허공에 멈춘 듯한 극적인 긴장감과 그를 제지하는 천사의 역동성이 돋보입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "11132",
@@ -2831,10 +2831,10 @@
       "date_en": "um 1675/82",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/RQ4XW9PG10/bartolome-esteban-murillo-1618/die-pastetenesser-487",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--qIvVdUDd--/q_60/w_400/artworks/BARTOLOME-ESTEBAN-MURILLO-1618_DIE-PASTETENESSER-487_899146_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "파이를 먹는 소년들",
       "artist_ko": "바르톨로메 에스테반 무리요",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 무리요의 세비야 거리 소년 연작 중 하나로, 바구니를 곁에 두고 파이를 맛있게 베어 무는 소년과 그를 바라보는 강아지를 유머러스하게 그렸습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4465",
@@ -2844,10 +2844,10 @@
       "date_en": "1738",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Y0GRlM7xRX/jean-baptiste-simeon-chardin-1699/die-ruebenputzerin-1090",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s---hJDiRU6--/q_60/w_400/artworks/JEAN-BAPTISTE-SIMEON-CHARDIN-1699_DIE-RUEBENPUTZERIN-1090_392236_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "순무를 깎는 여인",
+      "artist_ko": "장바티스트 시메옹 샤르댕",
+      "description_ko": "[지하층 EG Saal XIII] 18세기 프랑스 정물·장르화의 거장 샤르댕이 부엌에서 조용히 일하는 하녀의 평범한 일상을 고요하고 숭고한 시선으로 포착한 걸작입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9599",
@@ -2859,7 +2859,7 @@
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--BxxAdTFf--/q_60/w_400/artworks/HANS-MEMLING-1435_DIE-SIEBEN-FREUDEN-MARIENS-WAF-668_941144_CC-BY-SA_BSTGS.jpg",
       "title_ko": "성모의 일곱 가지 기쁨",
       "artist_ko": "한스 멤링",
-      "description_ko": "[Saal I] 한스 멤링이 브뤼헤의 가죽 상인 조합을 위해 그린 파노라마식 서사 회화입니다.\n• 감상 포인트: 하나의 연속된 풍경 속에 수태고지, 예수 탄생, 동방박사의 여정, 부활, 성령 강림, 성모 승천까지 총 25개의 성경 장면이 시간 순서대로 배치되어 있습니다. 그림 속 작은 인물들의 동선을 따라가며 이야기를 읽는 재미가 뛰어납니다.",
+      "description_ko": "[Saal I] 한스 멤링이 브뤼헤의 가죽 상인 조합을 위해 그린 파노라마식 서사 회화입니다.\n• 감상 포인트: 하나의 연속된 풍경 속에 수태고지, 예수 탄생, 동방박사의 여정, 부활, 성령 강림, 성모 승천까지 총 25개의 성경 장면이 시간 순서대로 배치되어 있습니다.",
       "needs_translation": false
     },
     {
@@ -3117,10 +3117,10 @@
       "date_en": "um 1520/25",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Qm45RnqxNo/albrecht-altdorfer-1482/donaulandschaft-mit-schloss-woerth-waf-30",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--7K0J5uh2--/q_60/w_400/artworks/ALBRECHT-ALTDORFER-1482_DONAULANDSCHAFT-MIT-SCHLOSS-WOERTH-WAF-30_874178_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "뵈르트 성이 보이는 도나우 강 풍경",
       "artist_ko": "알브레히트 알트도르퍼",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 9 핵심 걸작] 알브레히트 알트도르퍼가 1520년경 그린 서양 미술사 최초의 '순수 풍경화(인물이 전혀 없는 풍경화)' 중 하나입니다.\n• 감상 포인트: 성경이나 신화 속 이야기 없이 오직 레겐스부르크 인근 도나우 강변의 숲과 강물, 뵈르트 성의 자연 풍경 그 자체를 주인공으로 삼은 기념비적 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7703",
@@ -3143,10 +3143,10 @@
       "date_en": "1625 - 1638",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJYr2xJv/adriaen-brouwer-1605/dorfchirurg-das-gefuehl-581",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--5CiD5a3R--/q_60/w_400/artworks/ADRIAEN-BROUWER-1605_DORFCHIRURG-DAS-GEFUEHL-581_906165_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "마을의 외과의사 (촉각)",
       "artist_ko": "아드리안 브라우어르",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 11] 플랑드르 풍속화의 천재 아드리안 브라우어르가 오감 연작 중 '촉각'을 주제로 발 상처를 치료받는 농부의 고통스러운 표정을 생생하고 해학적으로 그린 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9967",
@@ -3208,10 +3208,10 @@
       "date_en": "um 1570",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/M0xyYAVxpl/tiziano-vecellio-gen-tizian/dornenkroenung-christi-2272",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--aB8chG6H--/q_60/w_400/artworks/TIZIANO-VECELLIO-GEN-TIZIAN_DORNENKROENUNG-CHRISTI-2272_614170_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "가시관을 쓰신 그리스도",
       "artist_ko": "티치아노 베첼리오",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V 핵심 걸작] 티치아노가 80세를 넘긴 말년(1570년경)에 그린 숭고한 걸작입니다.\n• 감상 포인트: 형태를 해체할 듯한 자유롭고 거친 붓터치(임파스토)와 어둠 속에서 타오르는 횃불의 빛이 어우러져, 고통받는 그리스도의 내면적 숭고함을 극대화합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4230",
@@ -3248,7 +3248,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jWLpOZ6xKY/gerard-ter-borch-d-j-1617/ein-knabe-floht-seinen-hund-589",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--DXbIXi6x--/q_60/w_400/artworks/GERARD-TER-BORCH-D-J-1617_EIN-KNABE-FLOHT-SEINEN-HUND-589_935157_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "헤라르트 테르 보르흐",
       "description_ko": "",
       "needs_translation": true
     },
@@ -3300,7 +3300,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jpxeVvBLJ7/frans-snyders-1579/eine-loewin-schlaegt-ein-wildschwein-620",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--AtL0sxo6--/q_60/w_400/artworks/FRANS-SNYDERS-1579_EINE-LOEWIN-SCHLAEGT-EIN-WILDSCHWEIN-620_939167_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "프란스 스네이더르스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -3624,10 +3624,10 @@
       "date_en": "um 1630/32",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Znxw0RvLXg/peter-paul-rubens-1577/friedensallegorie-343",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--EDuKk1a3--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_FRIEDENSALLEGORIE-343_880173_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "평화의 알레고리",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII] 전쟁의 참화로부터 평화와 풍요를 지켜내려는 루벤스의 인도주의적 염원이 담긴 알레고리화입니다.\n• 감상 포인트: 전쟁의 신 마르스가 횃불을 들고 돌진하려 할 때 평화의 여신과 미네르바가 이를 가로막으며 풍요의 뿔을 지키는 구도가 인상적입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5090",
@@ -3676,10 +3676,10 @@
       "date_en": "1445",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jWLpa8XGKY/stefan-lochner-1410/geburt-christi-rueckseite-kreuzigung-christi-13169",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--B60UDqNg--/q_60/w_400/artworks/STEFAN-LOCHNER-1410_GEBURT-CHRISTI-RUECKSEITE-KREUZIGUNG-CHRISTI-13169_906137_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 탄생",
       "artist_ko": "슈테판 로흐너",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IIb] 쾰른 화파의 거장 슈테판 로흐너가 1445년경 그린 서정적이고 보석처럼 빛나는 패널화입니다.\n• 감상 포인트: 황금빛 후광과 아기 천사들이 마구간 지붕과 아기 예수 주위를 가득 메운 동화적이고 경건한 분위기가 압권입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7565",
@@ -3715,10 +3715,10 @@
       "date_en": "1438/40",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Qlx2yKn4Xq/fra-angelico-1395/grablegung-christi-waf-38-a",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--AatkXeeX--/q_60/w_400/artworks/FRA-ANGELICO-1395_GRABLEGUNG-CHRISTI-WAF-38-A_1415363_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 매장",
       "artist_ko": "프라 안젤리코",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 1-2] 초기 피렌체 르네상스의 수도사 화가 프라 안젤리코가 산 마르코 수도원 대제단화의 프레델라(하단 소형 패널)로 그린 맑고 경건한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6709",
@@ -3728,10 +3728,10 @@
       "date_en": "1635/39",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlamzLWv/rembrandt-harmensz-van-rijn-1606/grablegung-christi-396",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--5rIJX5jP--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_GRABLEGUNG-CHRISTI-396_906147_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 매장",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 렘브란트 수난 연작 중 동굴 무덤 속으로 예수의 시신을 안치하는 장면을 그린 작품입니다.\n• 감상 포인트: 바위 무덤의 깊은 어둠 속에서 유백색 수의와 슬픔에 잠긴 여인들의 표정이 숭고하게 떠오릅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "40867",
@@ -3754,10 +3754,10 @@
       "date_en": "um 1606/07",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/XR4M7p0LQ1/jan-brueghel-d-ae-1568/grosser-blumenstrauss-824",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--KcRKpBU1--/q_60/w_400/artworks/JAN-BRUEGHEL-D-AE-1568_GROSSER-BLUMENSTRAUSS-824_800194_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "큰 꽃다발",
       "artist_ko": "얀 브뤼헐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal XI] '꽃의 브뤼헐'로 불린 얀 브뤼헐(아버지)이 도자기 화병에 꽂힌 수십 종의 꽃을 백과사전처럼 정밀하게 그린 정물화입니다.\n• 감상 포인트: 실제로는 같은 계절에 동시에 필 수 없는 봄·여름·가을 꽃들을 한 화병에 담아내어 자연의 모든 아름다움을 영원히 보존하려 했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5590",
@@ -3767,10 +3767,10 @@
       "date_en": "1603",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/wq4jEKEGWo/jan-brueghel-d-ae-1568/grosser-fischmarkt-1889",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--wu1c0qxU--/q_60/w_400/artworks/JAN-BRUEGHEL-D-AE-1568_GROSSER-FISCHMARKT-1889_947172_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "큰 어시장",
       "artist_ko": "얀 브뤼헐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 9] 얀 브뤼헐(아버지)이 바닷가 어시장에 모인 수많은 어부와 상인, 바구니 가득 담긴 물고기들을 세밀화처럼 정교하게 묘사한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5416",
@@ -3806,10 +3806,10 @@
       "date_en": "1668",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ApL8qq2GN2/claude-lorrain-claude-gellee-1604/hagar-und-ismael-in-der-wueste-598",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--noYbtZQS--/q_60/w_400/artworks/CLAUDE-LORRAIN-CLAUDE-GELLEE-1604_HAGAR-UND-ISMAEL-IN-DER-WUESTE-598_393204_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "광야의 하갈과 이스마엘",
       "artist_ko": "클로드 로랭",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[지하층 EG Saal XIII] 이상적 풍경화의 대가 클로드 로랭이 성경 속 인물들을 광활하고 황금빛으로 물든 이탈리아 로마 근교의 자연 풍경 속에 녹여낸 서정적인 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9006",
@@ -3858,10 +3858,10 @@
       "date_en": "um 1632",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/OrLbk3OG1V/peter-paul-rubens-1577/helene-fourment-mit-ihrem-erstgeborenen-sohn-frans-315",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--yBgZdLFK--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_HELENE-FOURMENT-MIT-IHREM-ERSTGEBORENEN-SOHN-FRANS-315_892178_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "맏아들 프란스와 함께 있는 헬레네 푸르망",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII] 루벤스가 젊은 아내 헬레네와 두 사람 사이에서 태어난 맏아들 프란스를 그린 사랑스러운 가족 초상화입니다.\n• 감상 포인트: 공식적인 귀족 초상화의 격식 대신 어머니의 무릎 위에서 장난기 어린 표정을 짓는 아이와 따뜻한 어머니의 시선이 자연스럽게 포착되었습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6497",
@@ -4001,10 +4001,10 @@
       "date_en": "1636",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ma4dknEGrO/rembrandt-harmensz-van-rijn-1606/himmelfahrt-christi-398",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--S30SIQz5--/q_60/w_400/artworks/REMBRANDT-HARMENSZ-VAN-RIJN-1606_HIMMELFAHRT-CHRISTI-398_906149_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도의 승천",
       "artist_ko": "렘브란트 판 레인",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IX] 렘브란트 수난 연작의 대미를 장식하는 작품으로, 하늘에서 내려온 빛의 구름을 타고 승천하는 그리스도를 묘사했습니다.\n• 감상 포인트: 위쪽의 찬란한 천상의 빛과 아래쪽 어두운 땅 위에서 경외감에 휩싸인 제자들의 대비가 압도적입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "12110",
@@ -4183,10 +4183,10 @@
       "date_en": "um 1490/94",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJroqLJv/domenico-ghirlandaio-1449/hochaltar-von-santa-maria-novella-maria-mit-kind-und-den-hll-dominikus-michael-johannes-de-1078",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--zh4sg4k6--/q_60/w_400/artworks/DOMENICO-GHIRLANDAIO-1449_HOCHALTAR-VON-SANTA-MARIA-NOVELLA-MARIA-MIT-KIND-UND-DEN-HLL-DOMINIKUS-MICHAEL-JOHANNES-DE-1078_937145_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "산타 마리아 노벨라 제단화: 성모자와 네 성인",
       "artist_ko": "도메니코 기를란다요",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 미켈란젤로의 스승이었던 도메니코 기를란다요 공방의 기념비적인 피렌체 대제단화 중앙 패널입니다.\n• 감상 포인트: 하늘의 영광 속에 앉은 성모자와 그 아래 균형 잡힌 구도로 서 있는 네 성인(도미니코, 미카엘, 세례 요한, 토마스)이 피렌체 르네상스의 장엄함을 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4450",
@@ -4378,10 +4378,10 @@
       "date_en": "um 1616",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Y0GRkKX4RX/peter-paul-rubens-1577/jagd-auf-nilpferd-und-krokodil-4797",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--a_ACmh4p--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_JAGD-AUF-NILPFERD-UND-KROKODIL-4797_911143_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "하마와 악어 사냥",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII] 루벤스가 네덜란드 총독의 주문으로 그린 이국적인 수렵화입니다.\n• 감상 포인트: 나일강변을 배경으로 거대한 하마와 악어, 사냥개와 아랍 기병들이 뒤엉킨 역동적인 전투 장면을 극적인 명암과 생생한 동물 해부학 묘사로 풀어냈습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5518",
@@ -4456,10 +4456,10 @@
       "date_en": "1470er/80er Jahre",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/2mxqY2Yx8b/hans-memling-1435/johannes-der-taeufer-rueckseite-totenkopf-652",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--UAYeqlQP--/q_60/w_400/artworks/HANS-MEMLING-1435_JOHANNES-DER-TAEUFER-RUECKSEITE-TOTENKOPF-652_939189_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "세례 요한 (뒷면: 해골 바니타스)",
       "artist_ko": "한스 멤링",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I 진열장] 한스 멤링의 소품으로, 앞면에는 황야의 세례 요한이, 뒷면에는 틈새 속 해골이 그려져 있습니다.\n• 감상 포인트: 뒷면의 해골은 '메멘토 모리(죽음을 기억하라)'를 상징하는 초기 네덜란드 정물화의 선구적 사례입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5588",
@@ -4482,10 +4482,10 @@
       "date_en": "um 1631",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/9pL3EZK4eb/diego-rodriguez-de-silva-y-velazquez-1599/junger-spanischer-edelmann-518",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--A7cdvoQl--/q_60/w_400/artworks/DIEGO-RODRIGUEZ-DE-SILVA-Y-VELAZQUEZ-1599_JUNGER-SPANISCHER-EDELMANN-518_807165_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "젊은 스페인 귀족의 초상",
       "artist_ko": "디에고 벨라스케스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VI] 스페인 황금시대의 거장 디에고 벨라스케스가 그린 미완성 초상화입니다.\n• 감상 포인트: 붉은 바탕(임프리마투라) 위에 흰색 레이스 칼라와 의복을 몇 번의 대담한 붓터치만으로 암시한 기법에서 벨라스케스의 천재적인 필치를 확인할 수 있습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7359",
@@ -4547,10 +4547,10 @@
       "date_en": "1520/25",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Znxw0D7LXg/lucas-cranach-d-ae-1472/kardinal-albrecht-von-brandenburg-vor-dem-gekreuzigten-3819",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--XD_pykbw--/q_60/w_400/artworks/LUCAS-CRANACH-D-AE-1472_KARDINAL-ALBRECHT-VON-BRANDENBURG-VOR-DEM-GEKREUZIGTEN-3819_918197_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "십자가의 그리스도 앞의 알브레히트 추기경",
       "artist_ko": "루카스 크라나흐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 루카스 크라나흐가 독일 가톨릭의 최고 실력자였던 브란덴부르크의 알브레히트 추기경을 그린 작품입니다.\n• 감상 포인트: 십자가 위 그리스도의 옆구리에서 흘러내리는 피가 아래에 무릎 꿇은 추기경에게 직접 향하는 구도로 구원의 은총을 시각화했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8583",
@@ -4651,10 +4651,10 @@
       "date_en": "um 1480",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/7yxYmblxYm/michael-pacher-1435/kirchenvaeteraltar-hl-augustinus-2597",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--yRAPh7WP--/q_60/w_400/artworks/MICHAEL-PACHER-1435_KIRCHENVAETERALTAR-HL-AUGUSTINUS-2597_871168_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "교부 제단화: 성 아우구스티누스",
       "artist_ko": "미하엘 파허",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 티롤 출신의 후기 고딕 거장 미하엘 파허가 제작한 '교부 제단화'의 패널 중 하나입니다.\n• 감상 포인트: 정교한 고딕 건축 캐노피 아래 앉아 사색하는 교부의 모습에서 북유럽의 세밀함과 이탈리아 르네상스의 원근법이 결합된 독창적 화풍을 볼 수 있습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6029",
@@ -4690,10 +4690,10 @@
       "date_en": "1503",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Qlx2dgbGXq/lucas-cranach-d-ae-1472/klage-unter-dem-kreuz-1416",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Cum6M3th--/q_60/w_400/artworks/LUCAS-CRANACH-D-AE-1472_KLAGE-UNTER-DEM-KREUZ-1416_918178_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "십자가 아래의 애도",
       "artist_ko": "루카스 크라나흐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 루카스 크라나흐(아버지)의 초기 빈 시절(1503년) 걸작으로, 거친 자연과 비극적 감정이 휘몰아칩니다.\n• 감상 포인트: 화면을 가로지르는 사선 구도의 십자가들과 바람에 흔들리는 나뭇가지, 인물들의 일그러진 표정이 표현주의적 강렬함을 전달합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "11476",
@@ -4716,10 +4716,10 @@
       "date_en": "um 1560 - 1565",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/JzG6R3MGWO/pieter-bruegel-d-ae-1525/kopf-einer-alten-baeuerin-7057",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--dIfrwLic--/q_60/w_400/artworks/PIETER-BRUEGEL-D-AE-1525_KOPF-EINER-ALTEN-BAEUERIN-7057_208405_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "늙은 농부 여인의 두상",
       "artist_ko": "피터르 브뤼헐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 11 핵심 걸작] 피터르 브뤼헐이 주름진 농부 여인의 얼굴을 꾸밈없이 사실적으로 포착한 소형 걸작입니다.\n• 감상 포인트: 거친 삶의 흔적이 새겨진 주름과 멍한 듯 깊은 시선이 귀족 초상화와는 전혀 다른 인간적 진실성과 존엄을 전달합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6435",
@@ -4898,10 +4898,10 @@
       "date_en": "um 1618",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/OrLbk9OG1V/peter-paul-rubens-1577/landschaft-mit-einer-kuhherde-322",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--0lNrHsHH--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_LANDSCHAFT-MIT-EINER-KUHHERDE-322_899136_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "소 떼가 있는 풍경",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII] 루벤스가 플랑드르 시골의 평화로운 목초지와 황혼 빛을 서정적으로 담아낸 풍경화입니다.\n• 감상 포인트: 역사화와 종교화의 거장으로 알려진 루벤스가 자연 풍경 자체의 빛과 대기를 얼마나 섬세하게 사랑했는지 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "2843",
@@ -5080,10 +5080,10 @@
       "date_en": "ca. 1303/06 vor 1312/13",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJYVXxJv/giotto-di-bondone-1270/letztes-abendmahl-643",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--44nhklhn--/q_60/w_400/artworks/GIOTTO-DI-BONDONE-1270_LETZTES-ABENDMAHL-643_897143_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "최후의 만찬",
       "artist_ko": "조토 디 본도네",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 1-2] 조토 디 본도네의 소형 제단화 패널로, 예수와 열두 제자가 식탁에 둘러앉은 장면을 간결하고 극적인 구도로 담아냈습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "2034",
@@ -5119,10 +5119,10 @@
       "date_en": "1621",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/9pL3QMj4eb/peter-paul-rubens-1577/loewenjagd-602",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--bIWnXkII--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_LOEWENJAGD-602_894148_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "사자 사냥",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII 핵심 걸작] 루벤스의 수렵화 연작 중 최고봉으로, 인간과 맹수가 뒤엉킨 극한의 에너지를 폭발시킨 대작입니다.\n• 감상 포인트: 말에서 떨어지는 기수와 사자의 발톱에 할퀴는 병사, 창을 내리꽂는 기병이 소용돌이치는 대각선 구도 속에 하나로 뭉쳐 숨 막히는 긴장감을 자아냅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "1344",
@@ -5184,10 +5184,10 @@
       "date_en": "1513/14",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A0GOlAR4dp/raffael-1483/madonna-della-tenda-mit-dem-vorhang-waf-797",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--zQ9KroOT--/q_60/w_400/artworks/RAFFAEL-1483_MADONNA-DELLA-TENDA-MIT-DEM-VORHANG-WAF-797_885145_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "휘장의 성모 (마돈나 델라 텐다)",
       "artist_ko": "라파엘로 산치오",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IV] 라파엘로가 로마 시절(1513~1514)에 그린 원숙기의 성모자화입니다.\n• 감상 포인트: 뒤편의 초록색 커튼을 배경으로 성모와 아기 예수, 어린 세례 요한이 밀착된 구도를 이루며, 로마 시기의 한층 풍부해진 색채와 입체감이 돋보입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "2387",
@@ -5197,10 +5197,10 @@
       "date_en": "um 1616/1618",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/QrLW9oV4NO/peter-paul-rubens-1577/madonna-im-blumenkranz-331",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--xUgJJP_p--/q_60/w_400/artworks/JAN-BRUEGHEL-D-AE-1568_MADONNA-IM-BLUMENKRANZ-331_911151_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "꽃화환 속의 성모자",
       "artist_ko": "얀 브뤼헐 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VIII] 페테르 파울 루벤스(인물)와 절친한 친구 얀 브뤼헐(꽃화환)이 함께 그린 공동 제작 걸작입니다.\n• 감상 포인트: 중앙의 부드럽고 입체적인 성모자 주위를 수십 종의 봄·여름 꽃들과 아기 천사들이 화환처럼 감싸며 두 거장의 장점이 완벽하게 조화를 이룹니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8665",
@@ -5275,10 +5275,10 @@
       "date_en": "um 1473/74",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/JzG6R7ZGWO/antonello-da-messina-1430/maria-der-verkuendigung-8054",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--QQuPAfui--/q_60/w_400/artworks/ANTONELLO-DA-MESSINA-1430_MARIA-DER-VERKUENDIGUNG-8054_895138_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "수태고지의 성모",
+      "artist_ko": "안토넬로 다 메시나",
+      "description_ko": "[Kabinett 4 핵심 걸작] 시칠리아 출신으로 북유럽 유화 기법을 이탈리아에 전파한 안토넬로 다 메시나의 걸작입니다.\n• 감상 포인트: 천사를 생략한 채 푸른 망토를 두른 성모가 관람객을 향해 살짝 손을 들어 올리는 독창적인 구도로, 성모의 내면적 경외감과 고요한 위엄을 극대화했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5517",
@@ -5341,7 +5341,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jWLpOMnxKY/jan-gossaert-gen-mabuse-1478/maria-mit-kind-waf-306",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--AeyJmcK7--/q_60/w_400/artworks/JAN-GOSSAERT-GEN-MABUSE-1478_MARIA-MIT-KIND-WAF-306_976327_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "얀 호사르트 (마뷔즈)",
       "description_ko": "",
       "needs_translation": true
     },
@@ -5574,10 +5574,10 @@
       "date_en": "um 1620",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/8eGVDw1xWQ/anthonis-van-dyck-1599/martyrium-des-hl-sebastian-371",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--LR-o4taF--/q_60/w_400/artworks/ANTHONIS-VAN-DYCK-1599_MARTYRIUM-DES-HL-SEBASTIAN-371_934150_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "순교하는 성 세바스티아누스",
       "artist_ko": "안토니 반 다이크",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VI] 젊은 반 다이크가 이탈리아 체류 직전 그린 감각적인 종교화입니다.\n• 감상 포인트: 나무에 묶인 젊은 성인의 우아한 인체 곡선과 극적인 명암 대비, 그리고 이를 지켜보는 로마 병사들의 역동적인 구도가 돋보입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8020",
@@ -5613,10 +5613,10 @@
       "date_en": "um 1770",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/OrLb0Ve41V/jean-honore-fragonard-1732/maedchen-mit-hund-huw-35",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--r0Vab8JG--/q_60/w_400/artworks/JEAN-HONORE-FRAGONARD-1732_MAEDCHEN-MIT-HUND-HUW-35_392190_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "강아지와 함께 있는 소녀",
+      "artist_ko": "장오노레 프라고나르",
+      "description_ko": "[Saal XII] 프랑스 로코코 후기의 거장 장오노레 프라고나르가 빠른 붓질과 생동감 넘치는 빛으로 소녀와 강아지의 즐거운 한때를 포착한 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6522",
@@ -5730,10 +5730,10 @@
       "date_en": "1625/30",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/k2xnEMg4Pd/frans-snyders-1579/obst-und-gemueseladen-4278",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--DphEOWbL--/q_60/w_400/artworks/FRANS-SNYDERS-1579_OBST-UND-GEMUESELADEN-4278_992258_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "과일과 채소 가게",
+      "artist_ko": "프란스 스네이더르스",
+      "description_ko": "[Saal VI] 플랑드르 정물화·동물화의 대가 프란스 스네이더르스가 풍요로운 시장 좌판을 화면 가득 담아낸 대작입니다.\n• 감상 포인트: 아티초크, 포도, 무화과, 아스파라거스 등 온갖 식재료의 싱싱한 질감과 원숭이·앵무새의 생동감 넘치는 움직임이 압권입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7269",
@@ -5782,10 +5782,10 @@
       "date_en": "um 1500",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/anxgBDj4Eq/albrecht-duerer-1471/paumgartner-altar-geburt-christi-706",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--qXlWOJ1j--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_PAUMGARTNER-ALTAR-GEBURT-CHRISTI-706_862141_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "파움가르트너 제단화: 그리스도의 탄생",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IV] 뒤러가 뉘른베르크의 유력 가문 파움가르트너 가문을 위해 그린 제단화의 중앙 패널입니다.\n• 감상 포인트: 아기 예수를 경배하는 성모와 요셉 주위로 작은 크기의 기증자 가족들이 배치되어 있으며, 폐허가 된 로마식 아치 건축의 원근법이 정교합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "1461",
@@ -5821,10 +5821,10 @@
       "date_en": "1517",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/o5xrQZ947X/hans-baldung-gen-grien-1484/pfalzgraf-philipp-der-kriegerische-683",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--CJu9O4Nj--/q_60/w_400/artworks/HANS-BALDUNG-GEN-GRIEN-1484_PFALZGRAF-PHILIPP-DER-KRIEGERISCHE-683_874162_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "팔츠 백작 호전왕 필리프의 초상",
       "artist_ko": "한스 발둥 그린",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 뒤러의 수제자 한스 발둥 그린이 1517년 그린 군주 초상화입니다.\n• 감상 포인트: 금목걸이와 붉은 모자를 쓴 젊은 군주의 대담한 시선과 강렬한 색채 대비가 독일 르네상스 초상화의 개성을 잘 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9431",
@@ -5834,10 +5834,10 @@
       "date_en": "um 1736/38",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/XR4M791LQ1/giovanni-antonio-canal-gen-canaletto-1697/piazzetta-und-bacino-di-san-marco-waf-137",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--XPA_jtqT--/q_60/w_400/artworks/GIOVANNI-ANTONIO-CANAL-GEN-CANALETTO-1697_PIAZZETTA-UND-BACINO-DI-SAN-MARCO-WAF-137_894152_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "베네치아의 피아체타와 산 마르코 만",
       "artist_ko": "카날레토",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal XIIb] 베네치아 풍경화(베두타)의 거장 카날레토가 두칼레 궁전과 산 마르코 광장 앞바다의 활기찬 풍경을 사진처럼 정밀한 원근법으로 그린 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5275",
@@ -5860,10 +5860,10 @@
       "date_en": "1620",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlaPMLWv/peter-paul-rubens-1577/portraet-der-aletheia-talbot-graefin-arundel-352",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--RSTL7MG3--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_PORTRAET-DER-ALETHEIA-TALBOT-GRAEFIN-ARUNDEL-352_897147_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "아룬델 백작부인 알레테이아 탤벗의 초상",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VII] 영국의 위대한 미술 수집가 아룬델 백작의 부인이 안트베르펜을 방문했을 때 루벤스가 그린 대형 초상화입니다.\n• 감상 포인트: 주황색 커튼과 붉은 융단, 난쟁이 시종, 사냥개까지 배치된 호화로운 바로크 궁정 초상화의 전형입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "36929",
@@ -6055,10 +6055,10 @@
       "date_en": "um 1784/89",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZKGPV62xgA/francesco-guardi-1712/regatta-auf-dem-canale-della-giudecca-huw-34",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--PokVN95e--/q_60/w_400/artworks/FRANCESCO-GUARDI-1712_REGATTA-AUF-DEM-CANALE-DELLA-GIUDECCA-HUW-34_392224_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "주데카 운하의 레가타 (보트 경주)",
       "artist_ko": "프란체스코 과르디",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal XIIb] 프란체스코 과르디가 베네치아 축제의 열기와 반짝이는 물결을 인상주의를 예견하는 듯한 경쾌하고 자유로운 필치로 그린 작품입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5673",
@@ -6108,7 +6108,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/rqxNXD3GvW/quinten-massys-1465/rem-altar-der-hl-rochus-mit-dem-engel-rueckseite-hl-anna-selbdritt-719",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--YSw2LeUO--/q_60/w_400/artworks/QUINTEN-MASSYS-1465_REM-ALTAR-DER-HL-ROCHUS-MIT-DEM-ENGEL-RUECKSEITE-HL-ANNA-SELBDRITT-719_908142_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "퀸텐 마시스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -6120,10 +6120,10 @@
       "date_en": "",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Y0GRkM64RX/quinten-massys-1465/rem-altar-heilige-dreifaltigkeit-gnadenstuhl-33",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--NFqviQ8D--/q_60/w_400/artworks/QUINTEN-MASSYS-1465_REM-ALTAR-HEILIGE-DREIFALTIGKEIT-GNADENSTUHL-33_908139_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "렘 제단화: 성삼위일체 (은총의 옥좌)",
+      "artist_ko": "퀸텐 마시스",
+      "description_ko": "[Saal IIa] 안트베르펜 르네상스의 선구자 퀸텐 마시스가 아우크스부르크의 상인 루카스 렘을 위해 그린 제단화입니다.\n• 감상 포인트: 성부 하나님이 십자가에 달린 성자 예수를 품에 안고, 그 위에 비둘기 형상의 성령이 임하는 고전적인 '은총의 옥좌' 도상을 웅장하게 구현했습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6501",
@@ -6134,7 +6134,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/8eGVDQ1xWQ/quinten-massys-1465/rem-altar-maria-mit-kind-35",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--qDV3oJ3B--/q_60/w_400/artworks/QUINTEN-MASSYS-1465_REM-ALTAR-MARIA-MIT-KIND-35_908137_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "퀸텐 마시스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -6147,7 +6147,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/02LAPKXxyk/quinten-massys-1465/rem-altar-martyrium-des-hl-sebastian-rueckseite-hl-lukas-5380",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--pLQokvKl--/q_60/w_400/artworks/QUINTEN-MASSYS-1465_REM-ALTAR-MARTYRIUM-DES-HL-SEBASTIAN-RUECKSEITE-HL-LUKAS-5380_908144_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "퀸텐 마시스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -6174,7 +6174,7 @@
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--bcId9cly--/q_60/w_400/artworks/PETER-PAUL-RUBENS-1577_RUBENS-UND-ISABELLA-BRANT-IN-DER-GEISSBLATTLAUBE-334_741142_CC-BY-SA_BSTGS.jpg",
       "title_ko": "인동덩굴 정원의 루벤스와 이사벨라 브란트",
       "artist_ko": "페테르 파울 루벤스",
-      "description_ko": "[Saal VII 핵심 걸작] 루벤스가 1609년 첫 번째 아내 이사벨라 브란트와 결혼한 직후 그린 자화상 겸 부부 초상화입니다.\n• 감상 포인트: 사랑과 정절을 상징하는 인동덩굴 아래 나란히 앉아 오른손을 맞잡은(혼인 서약의 제스처) 모습입니다. 비단과 레이스의 화려한 질감 묘사, 그리고 두 사람의 여유롭고 자신감 넘치는 표정이 돋보입니다.",
+      "description_ko": "[Saal VII 핵심 걸작] 루벤스가 1609년 첫 번째 아내 이사벨라 브란트와 결혼한 직후 그린 자화상 겸 부부 초상화입니다.\n• 감상 포인트: 사랑과 정절을 상징하는 인동덩굴 아래 나란히 앉아 오른손을 맞잡은(혼인 서약의 제스처) 모습입니다. 비단과 레이스의 화려한 질감 묘사와 두 사람의 여유로운 표정이 돋보입니다.",
       "needs_translation": false
     },
     {
@@ -6224,10 +6224,10 @@
       "date_en": "1752",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJrPbLJv/francois-boucher-1703/ruhendes-maedchen-1166",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--MlOPIOyJ--/q_60/w_400/artworks/FRANCOIS-BOUCHER-1703_RUHENDES-MAEDCHEN-1166_1281266_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "누워 있는 소녀 (마리 루이즈 오머피)",
       "artist_ko": "프랑수아 부셰",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[지하층 EG Saal XIII 핵심 걸작] 프랑수아 부셰가 1752년 루이 15세의 젊은 연인 오머피를 그린 로코코 누드화의 대표작입니다.\n• 감상 포인트: 벨벳 소파 위에 엎드린 소녀의 부드러운 피부 톤과 우아한 곡선, 커튼 사이로 스며드는 은은한 빛이 로코코 회화의 관능미와 세련미를 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "4197",
@@ -6263,10 +6263,10 @@
       "date_en": "1647",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJrkwLJv/jacob-van-ruisdael-1628/sandhuegel-mit-baeumen-bewachsen-1022",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--u9V8R16u--/q_60/w_400/artworks/JACOB-VAN-RUISDAEL-1628_SANDHUEGEL-MIT-BAEUMEN-BEWACHSEN-1022_938178_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "모래언덕 풍경",
       "artist_ko": "야코프 판 라위스달",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 21] 네덜란드 풍경화의 최고봉 야코프 판 라위스달이 19세에 그린 초기 걸작으로, 바람에 휘어진 나무와 웅장한 구름 하늘이 드라마틱합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9432",
@@ -6276,10 +6276,10 @@
       "date_en": "um 1736/38",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZMLJYnDxJv/giovanni-antonio-canal-gen-canaletto-1697/santa-maria-della-salute-und-die-riva-degli-schiavoni-in-venedig-waf-138",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--jPQhtE7l--/q_60/w_400/artworks/GIOVANNI-ANTONIO-CANAL-GEN-CANALETTO-1697_SANTA-MARIA-DELLA-SALUTE-UND-DIE-RIVA-DEGLI-SCHIAVONI-IN-VENEDIG-WAF-138_874203_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "산타 마리아 델라 살루테 성당과 리바 델리 스키아보니",
       "artist_ko": "카날레토",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal XIIb] 카날레토가 대운하 입구의 웅장한 바로크 성당과 곤돌라가 오가는 베네치아의 맑은 햇살을 투명하게 담아낸 걸작입니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "6018",
@@ -6420,7 +6420,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/M0xyB3ALpl/filippino-lippi-1457/schmerzensmann-und-sechs-heilige-hll-antonius-von-padua-ludwig-von-toulouse-franziskus-dom-waf-498",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--JYAKoVDv--/q_60/w_400/artworks/FILIPPINO-LIPPI-1457_SCHMERZENSMANN-UND-SECHS-HEILIGE-HLL-ANTONIUS-VON-PADUA-LUDWIG-VON-TOULOUSE-FRANZISKUS-DOM-WAF-498_683143_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "필리피노 리피",
       "description_ko": "",
       "needs_translation": true
     },
@@ -6458,10 +6458,10 @@
       "date_en": "1516",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ApL8B9M4N2/hans-holbein-d-ae-1465/sebastiansaltar-martyrium-des-hl-sebastian-5352",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--BsVFMwe4--/q_60/w_400/artworks/HANS-HOLBEIN-D-AE-1465_SEBASTIANSALTAR-MARTYRIUM-DES-HL-SEBASTIAN-5352_976395_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "성 세바스티아누스 제단화: 순교 장면",
       "artist_ko": "한스 홀바인 (아버지)",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal II] 한스 홀바인(아버지)이 아우크스부르크 성 카타리나 수녀원을 위해 1516년 완성한 대표작입니다.\n• 감상 포인트: 화살을 맞는 성 세바스티아누스의 고전적인 인체 비례와 르네상스풍 건축 배경은 독일 미술이 이탈리아 르네상스를 본격적으로 수용했음을 보여줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5662",
@@ -6510,10 +6510,10 @@
       "date_en": "um 1620/21 und 1627",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/5347O5849e/anthonis-van-dyck-1599/selbstbildnis-405",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--04YxVXjC--/q_60/w_400/artworks/ANTHONIS-VAN-DYCK-1599_SELBSTBILDNIS-405_935143_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "자화상",
       "artist_ko": "안토니 반 다이크",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VI] 루벤스의 수제자 안토니 반 다이크가 20대 초반에 그린 우아하고 귀족적인 자화상입니다.\n• 감상 포인트: 황금 사슬과 고급 벨벳 의상을 걸치고 고개를 돌려 관람객을 바라보는 자세에서 천재 청년 화가의 자부심과 세련미가 느껴집니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5709",
@@ -6614,10 +6614,10 @@
       "date_en": "1518",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/k2xnBjAxPd/albrecht-duerer-1471/selbstmord-der-lucretia-705",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--vVc-0J_S--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_SELBSTMORD-DER-LUCRETIA-705_894149_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "루크레티아의 자결",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V] 알브레히트 뒤러가 1518년 로마 건국 설화 속 정절의 상징 루크레티아를 실물 크기에 가깝게 그린 작품입니다.\n• 감상 포인트: 이탈리아 여행에서 연구한 고전적 인체 비례와 북유럽 특유의 세밀한 침대 휘장·보석 묘사가 결합되어 있습니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9018",
@@ -6796,10 +6796,10 @@
       "date_en": "1526",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/o5xrlDkG7X/albrecht-altdorfer-1482/susanna-im-bade-698",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--vebZdzc4--/q_60/w_400/artworks/ALBRECHT-ALTDORFER-1482_SUSANNA-IM-BADE-698_934177_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "목욕하는 수산나와 두 장로",
       "artist_ko": "알브레히트 알트도르퍼",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal I] 알트도르퍼가 성경 외경의 수산나 이야기를 거대한 르네상스 궁전 정원을 배경으로 그린 작품입니다.\n• 감상 포인트: 정교하게 축조된 환상적인 대리석 궁전 건축과 그 주변을 거니는 수많은 사람들의 세밀한 묘사가 마치 한 편의 궁정 연극을 보는 듯합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "7945",
@@ -6861,10 +6861,10 @@
       "date_en": "um 1480/90",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/5RGQzo14z3/hans-memling-1435/tafel-eines-diptychons-maria-im-rosenhag-680",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--67hUAc80--/q_60/w_400/artworks/HANS-MEMLING-1435_TAFEL-EINES-DIPTYCHONS-MARIA-IM-ROSENHAG-680_938166_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "장미 정원의 성모",
       "artist_ko": "한스 멤링",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IIb] 한스 멤링의 이면화 한쪽 패널로, 장미 울타리 앞에 앉아 아기 예수에게 사과를 건네는 성모를 그렸습니다.\n• 감상 포인트: 붉은 장미는 그리스도의 수난을, 흰 장미는 성모의 순결을, 사과는 원죄를 속죄하는 '새로운 아담'으로서의 예수를 상징합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "9624",
@@ -7121,10 +7121,10 @@
       "date_en": "um 1443/45",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/jpxegEvGJ7/fra-filippo-lippi-1406/verkuendigung-mariae-1072",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--H4QHWy-V--/q_60/w_400/artworks/FRA-FILIPPO-LIPPI-1406_VERKUENDIGUNG-MARIAE-1072_683146_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "수태고지",
       "artist_ko": "프라 필리포 리피",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal IV] 초기 피렌체 르네상스의 거장 프라 필리포 리피가 1443~1445년경 그린 우아한 제단화입니다.\n• 감상 포인트: 고전적인 기둥과 아치가 늘어선 회랑을 배경으로 천사와 성모의 절제된 몸짓, 비둘기 형상의 성령에서 뻗어 나오는 금빛 광선이 시적인 분위기를 자아냅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8134",
@@ -7147,10 +7147,10 @@
       "date_en": "um 1503/05",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/A9xlyorLWv/matthias-gruenewald-mathis-gothart-nith-1475/verspottung-christi-10352",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--UYe3qIQP--/q_60/w_400/artworks/MATTHIAS-GRUENEWALD-MATHIS-GOTHART-NITH-1475_VERSPOTTUNG-CHRISTI-10352_885142_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "그리스도를 조롱함",
       "artist_ko": "마티아스 그뤼네발트",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V] 마티아스 그뤼네발트의 초기 걸작(1503~1505년경)으로, 눈이 가려진 채 구타당하는 그리스도의 수난을 처절하게 묘사했습니다.\n• 감상 포인트: 어두운 밤 배경 속에서 튀어 오르는 주먹과 몽둥이, 뒤틀린 손가락의 표현이 관람객에게 즉각적인 충격과 연민을 전달합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "39160",
@@ -7175,7 +7175,7 @@
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--sis6TDU5--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_VIER-APOSTEL-HLL-JOHANNES-EV-UND-PETRUS-545_894147_CC-BY-SA_BSTGS.jpg",
       "title_ko": "네 명의 사도 (성 요한과 성 베드로)",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "[Saal II 핵심 걸작] 뒤러가 말년(1526년)에 고향 뉘른베르크 시의회에 기증한 두 폭의 패널 중 왼쪽 작품입니다.\n• 감상 포인트: 붉은 망토를 입은 젊은 사도 요한이 전면에 크게 배치되어 있고, 그 뒤로 열쇠를 든 베드로가 성경을 함께 들여다보고 있습니다. 종교개혁기의 혼란 속에서 극단주의를 경계하고 성경의 본질로 돌아가자는 뒤러의 신념이 하단 독일어 성경 구절에 담겨 있습니다.",
+      "description_ko": "[Saal II 핵심 걸작] 뒤러가 말년(1526년)에 고향 뉘른베르크 시의회에 기증한 두 폭의 패널 중 왼쪽 작품입니다.\n• 감상 포인트: 붉은 망토를 입은 젊은 사도 요한이 전면에 크게 배치되어 있고, 그 뒤로 열쇠를 든 베드로가 성경을 함께 들여다보고 있습니다. 종교개혁기의 혼란 속에서 성경의 본질로 돌아가자는 뒤러의 신념이 하단 독일어 명문에 담겨 있습니다.",
       "needs_translation": false
     },
     {
@@ -7188,7 +7188,7 @@
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--8bgLWgWQ--/q_60/w_400/artworks/ALBRECHT-DUERER-1471_VIER-APOSTEL-HLL-MARKUS-UND-PAULUS-540_935137_CC-BY-SA_BSTGS.jpg",
       "title_ko": "네 명의 사도 (성 마르코와 성 바울)",
       "artist_ko": "알브레히트 뒤러",
-      "description_ko": "[Saal II 핵심 걸작] '네 명의 사도' 연작의 오른쪽 패널로, 왼쪽의 요한·베드로와 짝을 이룹니다.\n• 감상 포인트: 흰 망토를 두른 사도 바울이 성경책과 칼을 쥐고 관람객을 날카롭게 응시하며, 뒤편의 복음사가 마르코가 두루마리를 들고 있습니다. 네 인물은 각각 다혈질·점액질·담즙질·우울질이라는 중세의 '4기질설(Four Temperaments)'을 상징하기도 합니다.",
+      "description_ko": "[Saal II 핵심 걸작] '네 명의 사도' 연작의 오른쪽 패널로, 왼쪽의 요한·베드로와 짝을 이룹니다.\n• 감상 포인트: 흰 망토를 두른 사도 바울이 성경책과 칼을 쥐고 관람객을 날카롭게 응시하며, 네 인물은 중세의 '4기질설(Four Temperaments)'을 상징하기도 합니다.",
       "needs_translation": false
     },
     {
@@ -7199,10 +7199,10 @@
       "date_en": "um 1490/94",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/QrLW3jmLNO/pietro-perugino-1445/vision-des-hl-bernhard-waf-764",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--SIogbLD5--/q_60/w_400/artworks/PIETRO-PERUGINO-1445_VISION-DES-HL-BERNHARD-WAF-764_714142_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
-      "artist_ko": "",
-      "description_ko": "",
-      "needs_translation": true
+      "title_ko": "성 베르나르두스의 환시",
+      "artist_ko": "피에트로 페루지노",
+      "description_ko": "[Saal IV] 라파엘로의 스승 피에트로 페루지노가 그린 대표작으로, 서재에서 집필하던 성 베르나르두스 앞에 성모 마리아가 나타난 기적을 묘사했습니다.\n• 감상 포인트: 좌우 대칭의 고전적 아치 건축과 그 너머로 펼쳐지는 움브리아 지방의 고요하고 투명한 풍경이 깊은 평온함을 줍니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5462",
@@ -7252,7 +7252,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/7yxYK9nGYm/frans-snyders-1579/vorratskammer-mit-diener-198",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--XBr3aK9w--/q_60/w_400/artworks/FRANS-SNYDERS-1579_VORRATSKAMMER-MIT-DIENER-198_877137_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "프란스 스네이더르스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -7264,10 +7264,10 @@
       "date_en": "um 1555",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/M0xyBW5Lpl/jacopo-tintoretto-jacopo-robusti/vulkan-ueberrascht-venus-und-mars-9257",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--XcEaOl8J--/q_60/w_400/artworks/JACOPO-TINTORETTO-JACOPO-ROBUSTI_VULKAN-UEBERRASCHT-VENUS-UND-MARS-9257_571183_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "불카누스에게 들킨 비너스와 마르스",
       "artist_ko": "야코포 틴토레토",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V] 베네치아 거장 틴토레토가 그리스 신화의 희극적인 장면을 대담한 대각선 구도로 그려낸 작품입니다.\n• 감상 포인트: 침대 휘장을 걷어 올리는 불카누스, 침대 밑에 숨은 큐피드, 테이블 아래 숨은 마르스와 거울에 비친 인물들의 시선이 교차하며 연극적인 긴장감을 만듭니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8923",
@@ -7278,7 +7278,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/PdxzYow4w5/meindert-hobbema-1638/waldlandschaft-893",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--NyrIE3jl--/q_60/w_400/artworks/MEINDERT-HOBBEMA-1638_WALDLANDSCHAFT-893_914178_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "메인데르트 호베마",
       "description_ko": "",
       "needs_translation": true
     },
@@ -7329,10 +7329,10 @@
       "date_en": "um 1632 und 1646",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/y7GEQZEGPV/jacob-jordaens-1593/wie-die-alten-sungen-so-zwitschern-die-jungen-806",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--voNziX_K--/q_60/w_400/artworks/JACOB-JORDAENS-1593_WIE-DIE-ALTEN-SUNGEN-SO-ZWITSCHERN-DIE-JUNGEN-806_880160_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "어른이 노래하면 아이들도 피리를 분다",
       "artist_ko": "야코프 요르단스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal VI] 플랑드르 바로크의 거장 야코프 요르단스가 네덜란드 속담을 주제로 그린 유쾌한 풍속화입니다.\n• 감상 포인트: 조부모부터 손자까지 3대가 식탁에 둘러앉아 악기를 연주하고 노래하는 모습을 통해 윗세대의 행동이 아랫세대에게 그대로 이어진다는 교훈을 유머러스하게 전합니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "8802",
@@ -7342,10 +7342,10 @@
       "date_en": "1660/62",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/wq4jjyE4Wo/frans-hals-1582/willem-croes-8402",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--b-T8ODOO--/q_60/w_400/artworks/FRANS-HALS-1582_WILLEM-CROES-8402_976354_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "빌럼 크루스의 초상",
       "artist_ko": "프란스 할스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Kabinett 20] 프란스 할스가 말년(1660~1662년경)에 그린 초상화로, 자유분방하고 대담한 붓질이 현대 회화를 연상시킵니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "10878",
@@ -7355,10 +7355,10 @@
       "date_en": "um 1625",
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ZnxwPdvLXg/frans-hals-1582/willem-van-heythuysen-14101",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--44Lfwomg--/q_60/w_400/artworks/FRANS-HALS-1582_WILLEM-VAN-HEYTHUYSEN-14101_874149_CC-BY-SA_BSTGS.jpg",
-      "title_ko": "",
+      "title_ko": "빌럼 판 헤이타위선의 초상",
       "artist_ko": "프란스 할스",
-      "description_ko": "",
-      "needs_translation": true
+      "description_ko": "[Saal V] 네덜란드 초상화의 거장 프란스 할스가 하를렘의 부유한 직물 상인을 당당하고 역동적인 포즈로 그린 작품입니다.\n• 감상 포인트: 칼을 짚고 허리에 손을 얹은 위풍당당한 자세와 생동감 넘치는 붓질이 인물의 성격을 생생하게 드러냅니다.",
+      "needs_translation": false
     },
     {
       "inventory_id": "5593",
@@ -7447,7 +7447,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/ApL8WKJxN2/david-teniers-d-j-1610/wirtsstube-451",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Hmdz2l8k--/q_60/w_400/artworks/DAVID-TENIERS-D-J-1610_WIRTSSTUBE-451_202518_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "다비트 테니어르스 (아들)",
       "description_ko": "",
       "needs_translation": true
     },
@@ -7460,7 +7460,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/RQ4XPR7410/david-teniers-d-j-1610/wirtsstube-818",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--Qv15LUUf--/q_60/w_400/artworks/DAVID-TENIERS-D-J-1610_WIRTSSTUBE-818_938138_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "다비트 테니어르스 (아들)",
       "description_ko": "",
       "needs_translation": true
     },
@@ -7486,7 +7486,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/Dj4mkyML5A/frans-snyders-1579/zwei-junge-loewen-verfolgen-einen-rehbock-631",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--QQmCbNU8--/q_60/w_400/artworks/FRANS-SNYDERS-1579_ZWEI-JUNGE-LOEWEN-VERFOLGEN-EINEN-REHBOCK-631_892200_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "프란스 스네이더르스",
       "description_ko": "",
       "needs_translation": true
     },
@@ -7525,7 +7525,7 @@
       "detail_url": "https://www.sammlung.pinakothek.de/en/artwork/k2xnZlNxPd/david-teniers-d-j-1610/zwei-singende-bauern-1851",
       "thumb_url": "https://cdn.thenetexperts.info/image/authenticated/s--PXITWu5S--/q_60/w_400/artworks/DAVID-TENIERS-D-J-1610_ZWEI-SINGENDE-BAUERN-1851_899171_CC-BY-SA_BSTGS.jpg",
       "title_ko": "",
-      "artist_ko": "",
+      "artist_ko": "다비트 테니어르스 (아들)",
       "description_ko": "",
       "needs_translation": true
     }
