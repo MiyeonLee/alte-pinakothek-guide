@@ -93,17 +93,18 @@
     // sw.js (1번째 줄)
     const STATIC_CACHE = "ap-docent-static-v3"; // 갱신할 때마다 v2 -> v3 -> v4 순으로 변경
 
-*(참고: `sw.js`의 `activate` 이벤트에 구버전 캐시 정리 로직이 포함되어 있어야 구버전 캐시가 자동 삭제됩니다.)*
+`activate` 이벤트는 `ap-docent-static-`으로 시작하는 이전 캐시를 삭제하고, 요청은 현재 버전 캐시에서만 조회합니다. 따라서 오래된 앱 캐시가 최신 `artworks.json`을 가리는 일을 방지합니다.
 
     self.addEventListener("activate", (event) => {
       event.waitUntil(
         caches.keys().then((keys) =>
           Promise.all(
-            keys.filter((key) => key !== STATIC_CACHE).map((key) => caches.delete(key))
+            keys
+              .filter((key) => key.startsWith(CACHE_PREFIX) && key !== STATIC_CACHE)
+              .map((key) => caches.delete(key))
           )
-        )
+        ).then(() => self.clients.claim())
       );
-      self.clients.claim();
     });
 
 ---

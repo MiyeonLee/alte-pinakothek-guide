@@ -1,4 +1,5 @@
-const STATIC_CACHE = "ap-docent-static-v2";
+const STATIC_CACHE = "ap-docent-static-v3";
+const CACHE_PREFIX = "ap-docent-static-";
 const ASSETS = ["./", "./index.html", "./app.js", "./artworks.json"];
 
 self.addEventListener("install", (event) => {
@@ -9,12 +10,20 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== STATIC_CACHE)
+          .map((key) => caches.delete(key))
+      )
+    ).then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    caches.open(STATIC_CACHE).then((cache) => cache.match(event.request)).then((cached) => {
       return cached || fetch(event.request);
     })
   );
