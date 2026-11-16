@@ -1,4 +1,4 @@
-const STATIC_CACHE = "ap-docent-static-v1";
+const STATIC_CACHE = "ap-docent-static-v2";
 const ASSETS = ["./", "./index.html", "./app.js", "./artworks.json"];
 
 self.addEventListener("install", (event) => {
