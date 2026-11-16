@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="알테 피나코텍" />
+  <title>알테 피나코텍 도슨트 가이드</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --sub: #6e6e73;
+      --accent: #1a365d;
+      --accent-light: #e8eef5;
+      --border: #e5e5ea;
+      --badge-ko: #1e7e34;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    h1 { font-size: 18px; margin: 0; font-weight: 700; color: var(--accent); }
+    .sync-badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .controls { display: flex; flex-direction: column; gap: 8px; }
+    .row { display: flex; gap: 8px; }
+    select, input[type="search"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--text);
+    }
+    .filter-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--sub);
+      padding: 2px 4px;
+    }
+    .stats {
+      padding: 10px 16px 4px;
+      font-size: 12px;
+      color: var(--sub);
+      display: flex;
+      justify-content: space-between;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 8px 16px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .card img {
+      width: 104px;
+      height: 124px;
+      object-fit: cover;
+      background: #e9ecef;
+      flex-shrink: 0;
+    }
+    .card-body {
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      flex: 1;
+    }
+    .room-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 7px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 4px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .artist {
+      font-size: 12px;
+      color: var(--sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ko-tag {
+      font-size: 11px;
+      color: var(--badge-ko);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 50;
+      display: none;
+      align-items: flex-end;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: #fff;
+      width: 100%;
+      max-height: 88vh;
+      border-radius: 20px 20px 0 0;
+      overflow-y: auto;
+      padding: 20px 20px calc(28px + env(safe-area-inset-bottom));
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .close-btn {
+      border: none;
+      background: var(--bg);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      background: #f0f0f2;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+    .modal-title { font-size: 18px; font-weight: 700; margin: 4px 0; }
+    .modal-sub { font-size: 14px; color: var(--sub); margin-bottom: 12px; }
+    .docent-box {
+      background: #f8f9fb;
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .ext-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <h1>Alte Pinakothek 가이드</h1>
+      <span id="statusBadge" class="sync-badge">로딩 중...</span>
+    </div>
+    <div class="controls">
+      <div class="row">
+        <select id="floorSelect" aria-label="층 선택">
+          <option value="ALL">전체 층 (OG / EG)</option>
+          <option value="AP OG">1층 (Obergeschoss)</option>
+          <option value="AP EG">지하층 (Erdgeschoss)</option>
+          <option value="OTHER">입구홀 등 기타</option>
+        </select>
+        <select id="roomSelect" aria-label="전시실 선택">
+          <option value="ALL">전체 전시실</option>
+        </select>
+      </div>
+      <input type="search" id="searchInput" placeholder="작품명, 화가명 검색 (예: Dürer, Rubens, 자화상)" />
+      <label class="filter-toggle">
+        <input type="checkbox" id="koOnlyCheckbox" />
+        한글 도슨트 해설 등록 작품만 보기
+      </label>
+    </div>
+  </header>
+
+  <div class="stats">
+    <span id="countText">0점 표시</span>
+    <span id="updatedText"></span>
+  </div>
+
+  <main id="artworkGrid" class="grid"></main>
+
+  <div id="detailModal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <span id="modalRoom" class="room-tag"></span>
+        <button id="closeModalBtn" class="close-btn" aria-label="닫기">✕</button>
+      </div>
+      <img id="modalImg" src="" alt="" />
+      <div id="modalTitle" class="modal-title"></div>
+      <div id="modalArtist" class="modal-sub"></div>
+      <div id="modalDesc" class="docent-box"></div>
+      <a id="modalLink" class="ext-link" href="#" target="_blank" rel="noopener">피나코텍 공식 상세 페이지 열기 →</a>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

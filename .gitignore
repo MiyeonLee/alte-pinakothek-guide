@@ -1,0 +1,27 @@
+# Ignore all Python scripts and local build tools
+*.py
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Ignore local secrets & environment files
+*.env
+
+# Ignore debug, archive & intermediate artifacts
+Archive/
+debug_*.html
+sample_api_response.json
+*_dump.html
+*_report.txt
+analysis_result.txt
+search_api_detail.txt
+app_bundle.js
+
+# Ignore OS & IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
