@@ -1,5 +1,7 @@
 const CACHE_KEY = "ap_artworks_cache_v1";
 let allArtworks = [];
+let currentTab = "ARTWORKS"; // "ARTWORKS" | "MOVEMENTS" | "ARTISTS"
+let selectedMovementFilter = "ALL";
 
 const floorSelect = document.getElementById("floorSelect");
 const roomSelect = document.getElementById("roomSelect");
@@ -33,11 +35,11 @@ function isMasterpiece(artwork) {
   );
 }
 
-// Inject fallback highlight, badge, and CC BY-SA 4.0 attribution styles
-function injectHighlightStyles() {
-  if (document.getElementById("ap-highlight-styles")) return;
+// Inject highlight, CC BY-SA 4.0 attribution, and Art History tab styles
+function injectAppStyles() {
+  if (document.getElementById("ap-extended-styles")) return;
   const style = document.createElement("style");
-  style.id = "ap-highlight-styles";
+  style.id = "ap-extended-styles";
   style.textContent = `
     .card.is-masterpiece {
       border: 2px solid #b8860b;
@@ -61,6 +63,171 @@ function injectHighlightStyles() {
       align-items: center;
       gap: 4px;
       margin-top: 4px;
+    }
+    .ap-nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 16px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    .ap-nav-tab-btn {
+      padding: 8px 16px;
+      border: 1px solid #cbd5e1;
+      background-color: #f8fafc;
+      color: #334155;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ap-nav-tab-btn:hover {
+      background-color: #e2e8f0;
+    }
+    .ap-nav-tab-btn.active {
+      background-color: #1e293b;
+      color: #ffffff;
+      border-color: #1e293b;
+    }
+    .ap-guide-section {
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    .ap-guide-section.active {
+      display: flex;
+    }
+    .ap-movement-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .ap-filter-chip {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .ap-filter-chip.active {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: #1e293b;
+    }
+    .ap-guide-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+    .ap-guide-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .ap-guide-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+    .ap-guide-card-sub {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .ap-guide-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ap-pill {
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+    }
+    .ap-guide-summary {
+      font-size: 0.92rem;
+      color: #334155;
+      line-height: 1.6;
+      margin: 8px 0 12px;
+    }
+    .ap-guide-features {
+      margin: 0 0 14px 18px;
+      padding: 0;
+      color: #475569;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+    .ap-linked-works-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    .ap-linked-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 8px;
+    }
+    .ap-work-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      padding: 6px 8px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .ap-work-chip:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .ap-work-chip.is-masterpiece {
+      border-color: #d4af37;
+      background: #fffdf5;
+    }
+    .ap-work-chip img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .ap-work-chip-info {
+      min-width: 0;
+      flex: 1;
+    }
+    .ap-work-chip-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ap-work-chip-meta {
+      font-size: 0.74rem;
+      color: #64748b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .modal-credit-box {
       margin-top: 8px;
@@ -122,6 +289,69 @@ function ensureMasterpieceFilterControl() {
   return checkbox;
 }
 
+// Create navigation tabs ("작품 목록" | "미술 사조별 해설" | "작가별 개요") and guide container
+function ensureNavigationAndGuideContainers() {
+  if (document.getElementById("apNavTabs")) return;
+  if (!artworkGrid || !artworkGrid.parentNode) return;
+
+  const navBar = document.createElement("nav");
+  navBar.id = "apNavTabs";
+  navBar.className = "ap-nav-tabs";
+  navBar.setAttribute("aria-label", "콘텐츠 보기 전환");
+
+  const tabs = [
+    { id: "ARTWORKS", label: "작품 목록" },
+    { id: "MOVEMENTS", label: "미술 사조별 해설" },
+    { id: "ARTISTS", label: "작가별 개요" }
+  ];
+
+  tabs.forEach((tab) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = tab.id === currentTab ? "ap-nav-tab-btn active" : "ap-nav-tab-btn";
+    btn.dataset.tabId = tab.id;
+    btn.textContent = tab.label;
+    btn.onclick = () => switchTab(tab.id);
+    navBar.appendChild(btn);
+  });
+
+  const guideSection = document.createElement("section");
+  guideSection.id = "apGuideSection";
+  guideSection.className = "ap-guide-section";
+
+  artworkGrid.parentNode.insertBefore(navBar, artworkGrid);
+  artworkGrid.parentNode.insertBefore(guideSection, artworkGrid.nextSibling);
+}
+
+function switchTab(tabId) {
+  currentTab = tabId;
+
+  const tabBtns = document.querySelectorAll(".ap-nav-tab-btn");
+  tabBtns.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.tabId === tabId);
+  });
+
+  const guideSection = document.getElementById("apGuideSection");
+  const filterControls = [floorSelect, roomSelect, koOnlyCheckbox, document.getElementById("masterpieceOnlyCheckbox")];
+
+  if (tabId === "ARTWORKS") {
+    artworkGrid.style.display = "";
+    if (guideSection) guideSection.classList.remove("active");
+    filterControls.forEach((el) => {
+      if (el) el.disabled = false;
+    });
+    renderArtworks();
+  } else {
+    artworkGrid.style.display = "none";
+    if (guideSection) guideSection.classList.add("active");
+    // Room/floor filters apply only to the main artwork grid; search input remains active across all tabs
+    filterControls.forEach((el) => {
+      if (el) el.disabled = true;
+    });
+    renderArtHistoryGuide();
+  }
+}
+
 // Ensure global CC BY-SA 4.0 attribution & non-official disclaimer footer exists
 function ensureLicenseFooter() {
   if (document.getElementById("apLicenseFooter")) return;
@@ -167,7 +397,241 @@ function populateRoomOptions() {
   });
 }
 
+function createWorkChipElement(work) {
+  const highlight = isMasterpiece(work);
+  const chip = document.createElement("button");
+  chip.type = "button";
+  chip.className = highlight ? "ap-work-chip is-masterpiece" : "ap-work-chip";
+  chip.onclick = () => openModal(work);
+
+  if (work.thumb_url) {
+    const thumb = document.createElement("img");
+    thumb.loading = "lazy";
+    thumb.src = work.thumb_url;
+    thumb.alt = work.title_ko || work.title_en;
+    chip.appendChild(thumb);
+  }
+
+  const info = document.createElement("div");
+  info.className = "ap-work-chip-info";
+
+  const titleEl = document.createElement("div");
+  titleEl.className = "ap-work-chip-title";
+  titleEl.textContent = (highlight ? "★ " : "") + (work.title_ko || work.title_en);
+
+  const metaEl = document.createElement("div");
+  metaEl.className = "ap-work-chip-meta";
+  metaEl.textContent = `${work.artist_ko || work.artist_en} · ${simplifyRoomLabel(work.room)}`;
+
+  info.appendChild(titleEl);
+  info.appendChild(metaEl);
+  chip.appendChild(info);
+
+  return chip;
+}
+
+function renderArtHistoryGuide() {
+  const guideSection = document.getElementById("apGuideSection");
+  if (!guideSection) return;
+
+  if (typeof ART_MOVEMENTS === "undefined" || typeof ARTISTS_MASTER === "undefined") {
+    guideSection.innerHTML =
+      '<div class="ap-guide-card">artHistoryMaster.js 데이터가 로드되지 않았습니다. index.html에 스크립트를 추가해주세요.</div>';
+    return;
+  }
+
+  const query = searchInput.value.trim().toLowerCase();
+  const translatedWorks = allArtworks.filter((art) => art.needs_translation === false || Boolean(art.description_ko));
+
+  const artistToMovement = {};
+  ARTISTS_MASTER.forEach((artist) => {
+    artistToMovement[artist.artistKo] = artist.movementId;
+  });
+
+  guideSection.innerHTML = "";
+
+  if (currentTab === "MOVEMENTS") {
+    const matchedMovements = ART_MOVEMENTS.filter((mov) => {
+      if (!query) return true;
+      const hay = [mov.nameKo, mov.nameEn, mov.period, mov.rooms, mov.summary, ...mov.characteristics]
+        .join(" ")
+        .toLowerCase();
+      return hay.includes(query);
+    });
+
+    countText.textContent = `미술 사조 ${matchedMovements.length}개 표시 (한글 해설 작품 ${translatedWorks.length}점 연계)`;
+
+    matchedMovements.forEach((mov) => {
+      const linkedWorks = translatedWorks.filter((art) => artistToMovement[art.artist_ko] === mov.id);
+
+      const card = document.createElement("article");
+      card.className = "ap-guide-card";
+
+      const header = document.createElement("div");
+      header.className = "ap-guide-card-header";
+
+      const titleWrap = document.createElement("div");
+      const h2 = document.createElement("h2");
+      h2.className = "ap-guide-card-title";
+      h2.textContent = mov.nameKo;
+
+      const sub = document.createElement("div");
+      sub.className = "ap-guide-card-sub";
+      sub.textContent = mov.nameEn;
+
+      titleWrap.appendChild(h2);
+      titleWrap.appendChild(sub);
+
+      const badges = document.createElement("div");
+      badges.className = "ap-guide-badges";
+      badges.innerHTML = `
+        <span class="ap-pill">${mov.period}</span>
+        <span class="ap-pill">주요 전시실: ${mov.rooms}</span>
+      `;
+
+      header.appendChild(titleWrap);
+      header.appendChild(badges);
+
+      const summary = document.createElement("p");
+      summary.className = "ap-guide-summary";
+      summary.textContent = mov.summary;
+
+      const ul = document.createElement("ul");
+      ul.className = "ap-guide-features";
+      mov.characteristics.forEach((feat) => {
+        const li = document.createElement("li");
+        li.textContent = feat;
+        ul.appendChild(li);
+      });
+
+      card.appendChild(header);
+      card.appendChild(summary);
+      card.appendChild(ul);
+
+      if (linkedWorks.length > 0) {
+        const worksTitle = document.createElement("div");
+        worksTitle.className = "ap-linked-works-title";
+        worksTitle.textContent = `한글 해설 소장작 (${linkedWorks.length}점 · 클릭 시 상세 해설 보기)`;
+
+        const worksGrid = document.createElement("div");
+        worksGrid.className = "ap-linked-works-grid";
+        linkedWorks.forEach((work) => {
+          worksGrid.appendChild(createWorkChipElement(work));
+        });
+
+        card.appendChild(worksTitle);
+        card.appendChild(worksGrid);
+      }
+
+      guideSection.appendChild(card);
+    });
+  } else if (currentTab === "ARTISTS") {
+    // Movement filter bar for Artists tab
+    const filterBar = document.createElement("div");
+    filterBar.className = "ap-movement-filter-bar";
+
+    const allChip = document.createElement("button");
+    allChip.type = "button";
+    allChip.className = selectedMovementFilter === "ALL" ? "ap-filter-chip active" : "ap-filter-chip";
+    allChip.textContent = `전체 사조 (${ARTISTS_MASTER.length}명)`;
+    allChip.onclick = () => {
+      selectedMovementFilter = "ALL";
+      renderArtHistoryGuide();
+    };
+    filterBar.appendChild(allChip);
+
+    ART_MOVEMENTS.forEach((mov) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = selectedMovementFilter === mov.id ? "ap-filter-chip active" : "ap-filter-chip";
+      btn.textContent = mov.nameKo.split(" (")[0];
+      btn.onclick = () => {
+        selectedMovementFilter = mov.id;
+        renderArtHistoryGuide();
+      };
+      filterBar.appendChild(btn);
+    });
+
+    guideSection.appendChild(filterBar);
+
+    const matchedArtists = ARTISTS_MASTER.filter((artist) => {
+      if (selectedMovementFilter !== "ALL" && artist.movementId !== selectedMovementFilter) {
+        return false;
+      }
+      if (query) {
+        const hay = [artist.artistKo, artist.artistEn, artist.origin, artist.bio].join(" ").toLowerCase();
+        return hay.includes(query);
+      }
+      return true;
+    });
+
+    countText.textContent = `주요 작가 ${matchedArtists.length}명 표시 (전체 ${ARTISTS_MASTER.length}명)`;
+
+    matchedArtists.forEach((artist) => {
+      const movement = ART_MOVEMENTS.find((m) => m.id === artist.movementId);
+      const artistWorks = translatedWorks.filter((art) => art.artist_ko === artist.artistKo);
+
+      const card = document.createElement("article");
+      card.className = "ap-guide-card";
+
+      const header = document.createElement("div");
+      header.className = "ap-guide-card-header";
+
+      const titleWrap = document.createElement("div");
+      const h2 = document.createElement("h2");
+      h2.className = "ap-guide-card-title";
+      h2.textContent = artist.artistKo;
+
+      const sub = document.createElement("div");
+      sub.className = "ap-guide-card-sub";
+      sub.textContent = `${artist.artistEn} (${artist.lifespan})`;
+
+      titleWrap.appendChild(h2);
+      titleWrap.appendChild(sub);
+
+      const badges = document.createElement("div");
+      badges.className = "ap-guide-badges";
+      badges.innerHTML = `
+        <span class="ap-pill">${artist.origin}</span>
+        ${movement ? `<span class="ap-pill">${movement.nameKo.split(" (")[0]}</span>` : ""}
+      `;
+
+      header.appendChild(titleWrap);
+      header.appendChild(badges);
+
+      const bio = document.createElement("p");
+      bio.className = "ap-guide-summary";
+      bio.textContent = artist.bio;
+
+      card.appendChild(header);
+      card.appendChild(bio);
+
+      if (artistWorks.length > 0) {
+        const worksTitle = document.createElement("div");
+        worksTitle.className = "ap-linked-works-title";
+        worksTitle.textContent = `한글 해설 제공 작품 (${artistWorks.length}점 · 클릭 시 상세 해설 보기)`;
+
+        const worksGrid = document.createElement("div");
+        worksGrid.className = "ap-linked-works-grid";
+        artistWorks.forEach((work) => {
+          worksGrid.appendChild(createWorkChipElement(work));
+        });
+
+        card.appendChild(worksTitle);
+        card.appendChild(worksGrid);
+      }
+
+      guideSection.appendChild(card);
+    });
+  }
+}
+
 function renderArtworks() {
+  if (currentTab !== "ARTWORKS") {
+    renderArtHistoryGuide();
+    return;
+  }
+
   const floorVal = floorSelect.value;
   const roomVal = roomSelect.value;
   const query = searchInput.value.trim().toLowerCase();
@@ -379,11 +843,12 @@ function applyData(payload, sourceLabel) {
 }
 
 async function initApp() {
-  injectHighlightStyles();
+  injectAppStyles();
   const mpCheckbox = masterpieceOnlyCheckbox || ensureMasterpieceFilterControl();
   if (mpCheckbox) {
     mpCheckbox.onchange = renderArtworks;
   }
+  ensureNavigationAndGuideContainers();
   ensureLicenseFooter();
 
   // 1. Load cached JSON immediately for instant startup & offline resilience
