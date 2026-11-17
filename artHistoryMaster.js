@@ -133,7 +133,7 @@ const ART_MOVEMENTS = [
     nameKo: "낭만주의 & 신고전주의 (노이 피나코테크 임시전시)",
     nameEn: "Romanticism & Neoclassicism",
     period: "18세기 말 ~ 19세기 중반",
-    rooms: "AP EG Saal I, Saal II, Kabinett 1-4",
+    rooms: "AP EG Saal IIb, Saal III, Kabinett 1, 4-7",
     summary:
       "고대 그리스·로마의 균형미와 계몽주의적 초상화를 추구한 신고전주의(카노바, 게인즈버러, 그라프)와, 자연의 숭고함·인간의 내면 감정·격정적 서사를 탐구한 낭만주의(프리드리히, 터너, 들라크루아, 고야)가 전개된 시기입니다.",
     characteristics: [
@@ -147,7 +147,7 @@ const ART_MOVEMENTS = [
     nameKo: "사실주의 & 독일 근대 회화 (노이 피나코테크 임시전시)",
     nameEn: "Realism & 19th-Century German Painting",
     period: "19세기 중반 ~ 후반",
-    rooms: "AP EG Saal IIa, Saal IIb, Kabinett 4-5",
+    rooms: "AP EG Saal II, Saal IIa, Kabinett 3-4",
     summary:
       "이상화된 신화 대신 눈앞의 현실과 농민의 노동, 자연을 있는 그대로 직시한 프랑스 사실주의·바르비종 화파(쿠르베, 밀레, 도미에)와 순수 회화성을 추구한 독일 근대 거장(멘첼, 라이블, 뵈클린)이 활약했습니다.",
     characteristics: [
@@ -161,7 +161,7 @@ const ART_MOVEMENTS = [
     nameKo: "인상주의 & 후기인상주의 (노이 피나코테크 임시전시)",
     nameEn: "Impressionism & Post-Impressionism",
     period: "19세기 후반 ~ 20세기 초",
-    rooms: "AP EG Saal III, Kabinett 5-7",
+    rooms: "AP EG Saal I, Saal II, Saal IIa, Saal XI, Kabinett 2",
     summary:
       "시시각각 변하는 자연광과 대기의 인상을 분할된 색채로 포착한 인상주의(마네, 모네, 드가, 르누아르, 리버만)와, 견고한 조형성·강렬한 내면 감정·색채 이론을 탐구한 후기인상주의(세잔, 반 고흐, 고갱, 시냐크)가 근대 미술의 문을 열었습니다.",
     characteristics: [
@@ -175,7 +175,7 @@ const ART_MOVEMENTS = [
     nameKo: "상징주의, 유겐트슈틸 & 초기 모더니즘 (노이 피나코테크 임시전시)",
     nameEn: "Symbolism, Jugendstil & Early Modernism",
     period: "19세기 말 ~ 20세기 초",
-    rooms: "AP EG Saal III, Kabinett 6-7",
+    rooms: "AP EG Saal I, Saal II, Kabinett 2",
     summary:
       "보이는 현실 너머의 꿈·심리·신화적 상징을 탐구한 세기말 상징주의·유겐트슈틸(클림트, 슈투크, 앙소르, 호들러)과, 근대 조각의 혁신(로댕) 및 표현주의·입체주의(에곤 실레, 피카소)로 이어지는 전환기 걸작들을 아우릅니다.",
     characteristics: [

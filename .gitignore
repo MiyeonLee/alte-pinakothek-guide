@@ -20,6 +20,7 @@ analysis_result.txt
 search_api_detail.txt
 app_bundle.js
 docent_ko_master.json
+docent_ko_np.json
 
 # Ignore OS & IDE metadata
 .DS_Store
