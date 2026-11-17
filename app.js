@@ -1,4 +1,4 @@
-const CACHE_KEY = "ap_artworks_cache_v1";
+const CACHE_KEY = "ap_artworks_cache_v2";
 let allArtworks = [];
 let currentTab = "ARTWORKS"; // "ARTWORKS" | "MOVEMENTS" | "ARTISTS"
 let selectedMovementFilter = "ALL";
@@ -35,7 +35,16 @@ function isMasterpiece(artwork) {
   );
 }
 
-// Inject highlight, CC BY-SA 4.0 attribution, and Art History tab styles
+// Helper function to identify Neue Pinakothek (NP) temporary exhibits
+function isNeuePinakothek(artwork) {
+  if (artwork.collection === "NP" || artwork.collection === "Neue Pinakothek") return true;
+  if (artwork.collection === "AP") return false;
+  return /^AP\s+EG\s*->\s*(Saal\s+(I|II|III|IV|V|VI|VII|VIII|IX|X)|Kabinett\s+([1-9]|1[0-5]))(\b|$)/.test(
+    artwork.room || ""
+  );
+}
+
+// Inject highlight, NP loan badge, CC BY-SA 4.0 attribution, and Art History tab styles
 function injectAppStyles() {
   if (document.getElementById("ap-extended-styles")) return;
   const style = document.createElement("style");
@@ -45,6 +54,9 @@ function injectAppStyles() {
       border: 2px solid #b8860b;
       background: linear-gradient(to bottom, #fffdf5, #ffffff);
       box-shadow: 0 4px 12px rgba(184, 134, 11, 0.16);
+    }
+    .card.is-np-loan {
+      border-left: 4px solid #0f766e;
     }
     .masterpiece-tag {
       display: inline-block;
@@ -56,6 +68,28 @@ function injectAppStyles() {
       border-radius: 4px;
       margin-top: 6px;
       margin-right: 6px;
+    }
+    .np-tag {
+      display: inline-block;
+      background-color: #0f766e;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 6px;
+      margin-right: 6px;
+    }
+    .ap-collection-select {
+      margin-left: 12px;
+      padding: 5px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #1e293b;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
     }
     .badge-row {
       display: flex;
@@ -203,6 +237,9 @@ function injectAppStyles() {
       border-color: #d4af37;
       background: #fffdf5;
     }
+    .ap-work-chip.is-np-loan {
+      border-left: 3px solid #0f766e;
+    }
     .ap-work-chip img {
       width: 40px;
       height: 40px;
@@ -289,6 +326,31 @@ function ensureMasterpieceFilterControl() {
   return checkbox;
 }
 
+// Dynamically create collection filter dropdown ("ALL" | "AP" | "NP")
+function ensureCollectionFilterControl() {
+  if (document.getElementById("collectionSelect") || !koOnlyCheckbox) {
+    return document.getElementById("collectionSelect");
+  }
+
+  const select = document.createElement("select");
+  select.id = "collectionSelect";
+  select.className = "ap-collection-select";
+  select.setAttribute("aria-label", "소장처 필터");
+  select.innerHTML = `
+    <option value="ALL">전체 소장처 (AP + NP)</option>
+    <option value="AP">알테 피나코테크 (14~18세기)</option>
+    <option value="NP">노이 피나코테크 임시전시 (19세기)</option>
+  `;
+
+  const mpLabel = document.getElementById("masterpieceOnlyCheckbox")?.closest("label");
+  const anchor = mpLabel || koOnlyCheckbox.closest("label") || koOnlyCheckbox;
+  if (anchor && anchor.parentNode) {
+    anchor.parentNode.insertBefore(select, anchor.nextSibling);
+  }
+
+  return select;
+}
+
 // Create navigation tabs ("작품 목록" | "미술 사조별 해설" | "작가별 개요") and guide container
 function ensureNavigationAndGuideContainers() {
   if (document.getElementById("apNavTabs")) return;
@@ -332,7 +394,13 @@ function switchTab(tabId) {
   });
 
   const guideSection = document.getElementById("apGuideSection");
-  const filterControls = [floorSelect, roomSelect, koOnlyCheckbox, document.getElementById("masterpieceOnlyCheckbox")];
+  const filterControls = [
+    floorSelect,
+    roomSelect,
+    koOnlyCheckbox,
+    document.getElementById("masterpieceOnlyCheckbox"),
+    document.getElementById("collectionSelect")
+  ];
 
   if (tabId === "ARTWORKS") {
     artworkGrid.style.display = "";
@@ -344,7 +412,6 @@ function switchTab(tabId) {
   } else {
     artworkGrid.style.display = "none";
     if (guideSection) guideSection.classList.add("active");
-    // Room/floor filters apply only to the main artwork grid; search input remains active across all tabs
     filterControls.forEach((el) => {
       if (el) el.disabled = true;
     });
@@ -377,9 +444,15 @@ function ensureLicenseFooter() {
 
 function populateRoomOptions() {
   const selectedFloor = floorSelect.value;
+  const selectedCollection = document.getElementById("collectionSelect")?.value || "ALL";
+  const prevRoom = roomSelect.value;
   const rooms = new Set();
 
   allArtworks.forEach((item) => {
+    const isNp = isNeuePinakothek(item);
+    if (selectedCollection === "AP" && isNp) return;
+    if (selectedCollection === "NP" && !isNp) return;
+
     const floor = getFloorCategory(item.room);
     if (selectedFloor === "ALL" || floor === selectedFloor) {
       rooms.add(item.room);
@@ -395,13 +468,25 @@ function populateRoomOptions() {
     opt.textContent = selectedFloor === "ALL" ? room.replace(/^AP\s+/, "") : simplifyRoomLabel(room);
     roomSelect.appendChild(opt);
   });
+
+  if (rooms.has(prevRoom)) {
+    roomSelect.value = prevRoom;
+  }
 }
 
 function createWorkChipElement(work) {
   const highlight = isMasterpiece(work);
+  const isNp = isNeuePinakothek(work);
+
   const chip = document.createElement("button");
   chip.type = "button";
-  chip.className = highlight ? "ap-work-chip is-masterpiece" : "ap-work-chip";
+  chip.className = [
+    "ap-work-chip",
+    highlight ? "is-masterpiece" : "",
+    isNp ? "is-np-loan" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
   chip.onclick = () => openModal(work);
 
   if (work.thumb_url) {
@@ -421,7 +506,8 @@ function createWorkChipElement(work) {
 
   const metaEl = document.createElement("div");
   metaEl.className = "ap-work-chip-meta";
-  metaEl.textContent = `${work.artist_ko || work.artist_en} · ${simplifyRoomLabel(work.room)}`;
+  const npPrefix = isNp ? "[NP] " : "";
+  metaEl.textContent = `${npPrefix}${work.artist_ko || work.artist_en} · ${simplifyRoomLabel(work.room)}`;
 
   info.appendChild(titleEl);
   info.appendChild(metaEl);
@@ -441,12 +527,20 @@ function renderArtHistoryGuide() {
   }
 
   const query = searchInput.value.trim().toLowerCase();
-  const translatedWorks = allArtworks.filter((art) => art.needs_translation === false || Boolean(art.description_ko));
+
+  // Include translated works AND Neue Pinakothek temporary works (even if pending Korean translation)
+  const guideEligibleWorks = allArtworks.filter(
+    (art) => art.needs_translation === false || Boolean(art.description_ko) || isNeuePinakothek(art)
+  );
 
   const artistToMovement = {};
   ARTISTS_MASTER.forEach((artist) => {
-    artistToMovement[artist.artistKo] = artist.movementId;
+    if (artist.artistKo) artistToMovement[artist.artistKo] = artist.movementId;
+    if (artist.artistEn) artistToMovement[artist.artistEn.toLowerCase()] = artist.movementId;
   });
+
+  const getWorkMovementId = (art) =>
+    artistToMovement[art.artist_ko] || artistToMovement[(art.artist_en || "").toLowerCase()];
 
   guideSection.innerHTML = "";
 
@@ -459,10 +553,10 @@ function renderArtHistoryGuide() {
       return hay.includes(query);
     });
 
-    countText.textContent = `미술 사조 ${matchedMovements.length}개 표시 (한글 해설 작품 ${translatedWorks.length}점 연계)`;
+    countText.textContent = `미술 사조 ${matchedMovements.length}개 표시 (연계 작품 ${guideEligibleWorks.length}점)`;
 
     matchedMovements.forEach((mov) => {
-      const linkedWorks = translatedWorks.filter((art) => artistToMovement[art.artist_ko] === mov.id);
+      const linkedWorks = guideEligibleWorks.filter((art) => getWorkMovementId(art) === mov.id);
 
       const card = document.createElement("article");
       card.className = "ap-guide-card";
@@ -511,7 +605,7 @@ function renderArtHistoryGuide() {
       if (linkedWorks.length > 0) {
         const worksTitle = document.createElement("div");
         worksTitle.className = "ap-linked-works-title";
-        worksTitle.textContent = `한글 해설 소장작 (${linkedWorks.length}점 · 클릭 시 상세 해설 보기)`;
+        worksTitle.textContent = `주요 전시작 (${linkedWorks.length}점 · 클릭 시 상세 정보 보기)`;
 
         const worksGrid = document.createElement("div");
         worksGrid.className = "ap-linked-works-grid";
@@ -526,7 +620,6 @@ function renderArtHistoryGuide() {
       guideSection.appendChild(card);
     });
   } else if (currentTab === "ARTISTS") {
-    // Movement filter bar for Artists tab
     const filterBar = document.createElement("div");
     filterBar.className = "ap-movement-filter-bar";
 
@@ -569,7 +662,11 @@ function renderArtHistoryGuide() {
 
     matchedArtists.forEach((artist) => {
       const movement = ART_MOVEMENTS.find((m) => m.id === artist.movementId);
-      const artistWorks = translatedWorks.filter((art) => art.artist_ko === artist.artistKo);
+      const artistWorks = guideEligibleWorks.filter(
+        (art) =>
+          art.artist_ko === artist.artistKo ||
+          (art.artist_en && art.artist_en.toLowerCase() === artist.artistEn.toLowerCase())
+      );
 
       const card = document.createElement("article");
       card.className = "ap-guide-card";
@@ -609,7 +706,7 @@ function renderArtHistoryGuide() {
       if (artistWorks.length > 0) {
         const worksTitle = document.createElement("div");
         worksTitle.className = "ap-linked-works-title";
-        worksTitle.textContent = `한글 해설 제공 작품 (${artistWorks.length}점 · 클릭 시 상세 해설 보기)`;
+        worksTitle.textContent = `주요 전시작 (${artistWorks.length}점 · 클릭 시 상세 정보 보기)`;
 
         const worksGrid = document.createElement("div");
         worksGrid.className = "ap-linked-works-grid";
@@ -638,8 +735,12 @@ function renderArtworks() {
   const koOnly = koOnlyCheckbox.checked;
   const mpCheckbox = document.getElementById("masterpieceOnlyCheckbox");
   const masterpieceOnly = mpCheckbox ? mpCheckbox.checked : false;
+  const collectionVal = document.getElementById("collectionSelect")?.value || "ALL";
 
   const filtered = allArtworks.filter((item) => {
+    const isNp = isNeuePinakothek(item);
+    if (collectionVal === "AP" && isNp) return false;
+    if (collectionVal === "NP" && !isNp) return false;
     if (floorVal !== "ALL" && getFloorCategory(item.room) !== floorVal) return false;
     if (roomVal !== "ALL" && item.room !== roomVal) return false;
     if (koOnly && !item.description_ko) return false;
@@ -663,15 +764,23 @@ function renderArtworks() {
   });
 
   const masterpieceCount = filtered.filter(isMasterpiece).length;
-  countText.textContent = `${filtered.length}점 표시 (전체 ${allArtworks.length}점 · 핵심 걸작 ${masterpieceCount}점)`;
+  const npCount = filtered.filter(isNeuePinakothek).length;
+  countText.textContent = `${filtered.length}점 표시 (전체 ${allArtworks.length}점 · NP 임시전시 ${npCount}점 · 핵심 걸작 ${masterpieceCount}점)`;
   artworkGrid.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
   filtered.forEach((item) => {
     const highlight = isMasterpiece(item);
+    const isNp = isNeuePinakothek(item);
 
     const card = document.createElement("article");
-    card.className = highlight ? "card is-masterpiece" : "card";
+    card.className = [
+      "card",
+      highlight ? "is-masterpiece" : "",
+      isNp ? "is-np-loan" : ""
+    ]
+      .filter(Boolean)
+      .join(" ");
     card.onclick = () => openModal(item);
 
     const img = document.createElement("img");
@@ -701,7 +810,7 @@ function renderArtworks() {
     artist.textContent = item.date_en ? `${artistName} · ${item.date_en}` : artistName;
     bottomDiv.appendChild(artist);
 
-    if (highlight || item.description_ko) {
+    if (highlight || isNp || item.description_ko) {
       const badgeRow = document.createElement("div");
       badgeRow.className = "badge-row";
 
@@ -710,6 +819,13 @@ function renderArtworks() {
         mpBadge.className = "masterpiece-tag";
         mpBadge.textContent = "★ 핵심 걸작";
         badgeRow.appendChild(mpBadge);
+      }
+
+      if (isNp) {
+        const npBadge = document.createElement("span");
+        npBadge.className = "np-tag";
+        npBadge.textContent = "노이 피나코테크";
+        badgeRow.appendChild(npBadge);
       }
 
       if (item.description_ko) {
@@ -777,9 +893,11 @@ function updateModalCredit(item) {
 
 function openModal(item) {
   const highlight = isMasterpiece(item);
-  document.getElementById("modalRoom").textContent = highlight
-    ? `${item.room} · ★ 핵심 걸작`
-    : item.room;
+  const isNp = isNeuePinakothek(item);
+  const originSuffix = isNp ? " · 노이 피나코테크 임시전시" : "";
+  const mpSuffix = highlight ? " · ★ 핵심 걸작" : "";
+
+  document.getElementById("modalRoom").textContent = `${item.room}${originSuffix}${mpSuffix}`;
 
   const modalImg = document.getElementById("modalImg");
   if (item.thumb_url) {
@@ -802,7 +920,11 @@ function openModal(item) {
   if (item.description_ko) {
     descBox.textContent = item.description_ko;
   } else {
+    const collectionNotice = isNp
+      ? "노이 피나코테크(Neue Pinakothek) 소장품으로 현재 알테 피나코테크에 임시 전시 중인 작품입니다.\n"
+      : "";
     descBox.textContent =
+      collectionNotice +
       "아직 한글 도슨트 해설이 등록되지 않은 작품입니다.\n" +
       `현재 위치: ${item.room}\n` +
       "하단 공식 상세 페이지 링크에서 독일어/영어 원문 정보를 확인할 수 있습니다.";
@@ -847,6 +969,13 @@ async function initApp() {
   const mpCheckbox = masterpieceOnlyCheckbox || ensureMasterpieceFilterControl();
   if (mpCheckbox) {
     mpCheckbox.onchange = renderArtworks;
+  }
+  const colSelect = ensureCollectionFilterControl();
+  if (colSelect) {
+    colSelect.onchange = () => {
+      populateRoomOptions();
+      renderArtworks();
+    };
   }
   ensureNavigationAndGuideContainers();
   ensureLicenseFooter();

@@ -57,7 +57,8 @@
   * `https://www.sammlung.pinakothek.de/api/search`에 `filters={"locationCode":"AP","onDisplay":true}` 조건으로 `GET` 요청을 보냅니다.
   * 기존 `artworks.json`이 있으면 `inventory_id`를 대조하여 이미 입력된 `title_ko`, `artist_ko`, `description_ko`를 보존합니다.
   * 새로 전시된 작품(`new`)과 전시실이 바뀐 작품(`moved`)을 터미널에 출력합니다.
-
+  * fetch_ap_artworks.py를 수정한 뒤 API를 다시 호출하지 않고도, 다음 명령어로 기존 artworks.json의 미매핑 artist_ko를 즉시 채워 넣을 수 있습니다.
+    python -c "import json, fetch_ap_artworks as f; p='artworks.json'; d=json.load(open(p, encoding='utf-8')); [x.update({'artist_ko': f.NP_ARTIST_KO_MAP[x['artist_en']]}) for x in d['artworks'] if not x.get('artist_ko') and x.get('artist_en') in f.NP_ARTIST_KO_MAP]; json.dump(d, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2); print('Updated successfully')"
 ---
 
 ### Step 2: 신규 한글 도슨트 해설 작성 및 병합 (`enrich_korean_docent.py`)
