@@ -13,6 +13,7 @@ let visitedIds = new Set();
 
 // TTS state
 let ttsRate = 1.0;
+let currentSpeakingId = null;
 
 const floorSelect = document.getElementById("floorSelect");
 const roomSelect = document.getElementById("roomSelect");
@@ -595,6 +596,64 @@ function injectAppStyles() {
     .ap-license-footer a {
       color: #334155;
       text-decoration: underline;
+    }
+    .mini-action-btn.active-tts {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+    }
+    /* Floating Bottom Mini Audio Player */
+    .ap-floating-player {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      z-index: 40;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: rgba(26, 54, 93, 0.96);
+      color: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .ap-floating-player.visible {
+      display: flex;
+    }
+    .ap-fp-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .ap-fp-label {
+      font-size: 10px;
+      color: #93c5fd;
+      font-weight: 700;
+    }
+    .ap-fp-title {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ap-fp-btn {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 9px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .ap-fp-btn.primary {
+      background: #ffffff;
+      color: #1a365d;
+      border-color: #ffffff;
     }
   `;
   document.head.appendChild(style);
@@ -1417,8 +1476,23 @@ function renderArtworks() {
     roomTag.className = "room-tag";
     roomTag.textContent = item.room.replace(/^AP\s+/, "");
 
-    const actionGroup = document.createElement("div");
+const actionGroup = document.createElement("div");
     actionGroup.className = "card-action-group";
+
+    if (item.description_ko && item.description_ko.trim()) {
+      const isThisPlaying =
+        currentSpeakingId === idStr &&
+        "speechSynthesis" in window &&
+        window.speechSynthesis.speaking &&
+        !window.speechSynthesis.paused;
+
+      const ttsQuickBtn = document.createElement("button");
+      ttsQuickBtn.type = "button";
+      ttsQuickBtn.className = isThisPlaying ? "mini-action-btn active-tts" : "mini-action-btn";
+      ttsQuickBtn.textContent = isThisPlaying ? "⏸ 정지" : "▶ 듣기";
+      ttsQuickBtn.onclick = (e) => toggleArtworkSpeech(item, e);
+      actionGroup.appendChild(ttsQuickBtn);
+    }
 
     const wishBtn = document.createElement("button");
     wishBtn.type = "button";
@@ -1490,12 +1564,159 @@ function renderArtworks() {
   artworkGrid.appendChild(fragment);
 }
 
-// --- Modal: Credit, Personal Checklist & Offline TTS Audio Guide ---
+// --- Unified Offline Korean TTS Controller (List + Floating Bar + Modal) ---
+function ensureFloatingPlayer() {
+  let fp = document.getElementById("apFloatingPlayer");
+  if (!fp) {
+    fp = document.createElement("div");
+    fp.id = "apFloatingPlayer";
+    fp.className = "ap-floating-player";
+    document.body.appendChild(fp);
+  }
+  return fp;
+}
+
+function updateFloatingPlayerUI(item, stateText) {
+  const fp = ensureFloatingPlayer();
+  if (!item || !currentSpeakingId) {
+    fp.classList.remove("visible");
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  const isPaused = synth && synth.paused;
+
+  fp.innerHTML = "";
+
+  const info = document.createElement("div");
+  info.className = "ap-fp-info";
+  info.style.cursor = "pointer";
+  info.onclick = () => openModal(item);
+
+  const label = document.createElement("div");
+  label.className = "ap-fp-label";
+  label.textContent = `🎧 ${stateText} · 탭하여 상세 보기`;
+
+  const title = document.createElement("div");
+  title.className = "ap-fp-title";
+  title.textContent = item.title_ko || item.title_en;
+
+  info.appendChild(label);
+  info.appendChild(title);
+
+  const toggleBtn = document.createElement("button");
+  toggleBtn.type = "button";
+  toggleBtn.className = "ap-fp-btn primary";
+  toggleBtn.textContent = isPaused ? "▶ 재개" : "⏸ 일시정지";
+  toggleBtn.onclick = () => toggleArtworkSpeech(item);
+
+  const rateBtn = document.createElement("button");
+  rateBtn.type = "button";
+  rateBtn.className = "ap-fp-btn";
+  rateBtn.textContent = `${ttsRate.toFixed(1)}x`;
+  rateBtn.onclick = () => {
+    ttsRate = ttsRate === 1.0 ? 1.2 : ttsRate === 1.2 ? 1.4 : 1.0;
+    playArtworkSpeech(item);
+  };
+
+  const stopBtn = document.createElement("button");
+  stopBtn.type = "button";
+  stopBtn.className = "ap-fp-btn";
+  stopBtn.textContent = "✕";
+  stopBtn.setAttribute("aria-label", "음성 정지");
+  stopBtn.onclick = () => stopSpeech();
+
+  fp.appendChild(info);
+  fp.appendChild(toggleBtn);
+  fp.appendChild(rateBtn);
+  fp.appendChild(stopBtn);
+  fp.classList.add("visible");
+}
+
 function stopSpeech() {
+  currentSpeakingId = null;
   if ("speechSynthesis" in window) {
     try {
       window.speechSynthesis.cancel();
     } catch (_) {}
+  }
+  const fp = document.getElementById("apFloatingPlayer");
+  if (fp) fp.classList.remove("visible");
+  if (currentTab === "ARTWORKS") renderArtworks();
+}
+
+function playArtworkSpeech(item) {
+  if (!("speechSynthesis" in window)) {
+    alert("이 브라우저에서는 음성 합성을 지원하지 않습니다.");
+    return;
+  }
+  if (!item || !item.description_ko || !item.description_ko.trim()) return;
+
+  const synth = window.speechSynthesis;
+  const idStr = String(item.inventory_id);
+
+  synth.cancel();
+  currentSpeakingId = idStr;
+
+  const titlePart = item.title_ko || item.title_en || "";
+  const artistPart = item.artist_ko || item.artist_en || "";
+  const fullText = `${titlePart}. 작가: ${artistPart}. ${item.description_ko}`;
+
+  const utterance = new SpeechSynthesisUtterance(fullText);
+  utterance.lang = "ko-KR";
+  utterance.rate = ttsRate;
+
+  const voices = synth.getVoices();
+  const koVoice = voices.find((v) => v.lang && v.lang.toLowerCase().includes("ko"));
+  if (koVoice) utterance.voice = koVoice;
+
+  utterance.onstart = () => {
+    updateFloatingPlayerUI(item, "해설 재생 중");
+    if (currentTab === "ARTWORKS") renderArtworks();
+  };
+  utterance.onend = () => {
+    if (currentSpeakingId === idStr) {
+      currentSpeakingId = null;
+      const fp = document.getElementById("apFloatingPlayer");
+      if (fp) fp.classList.remove("visible");
+      if (currentTab === "ARTWORKS") renderArtworks();
+    }
+  };
+  utterance.onerror = () => {
+    if (currentSpeakingId === idStr) {
+      currentSpeakingId = null;
+      const fp = document.getElementById("apFloatingPlayer");
+      if (fp) fp.classList.remove("visible");
+      if (currentTab === "ARTWORKS") renderArtworks();
+    }
+  };
+
+  synth.speak(utterance);
+  updateFloatingPlayerUI(item, "해설 재생 중");
+  if (currentTab === "ARTWORKS") renderArtworks();
+}
+
+function toggleArtworkSpeech(item, e) {
+  if (e) e.stopPropagation();
+  if (!("speechSynthesis" in window)) return;
+
+  const synth = window.speechSynthesis;
+  const idStr = String(item.inventory_id);
+
+  if (currentSpeakingId === idStr) {
+    if (synth.paused) {
+      synth.resume();
+      updateFloatingPlayerUI(item, "해설 재생 중");
+      if (currentTab === "ARTWORKS") renderArtworks();
+    } else if (synth.speaking) {
+      synth.pause();
+      updateFloatingPlayerUI(item, "일시정지됨");
+      if (currentTab === "ARTWORKS") renderArtworks();
+    } else {
+      playArtworkSpeech(item);
+    }
+  } else {
+    playArtworkSpeech(item);
   }
 }
 
@@ -1589,7 +1810,6 @@ function renderModalTtsBar(item) {
 
   let ttsBar = document.getElementById("modalTtsBar");
 
-  // 한글 도슨트 해설이 없는 작품이면 기존 플레이어 바 제거 후 종료
   if (!item.description_ko || !item.description_ko.trim()) {
     if (ttsBar) ttsBar.remove();
     return;
@@ -1617,75 +1837,29 @@ function renderModalTtsBar(item) {
   playBtn.type = "button";
   playBtn.className = "tts-btn";
   playBtn.textContent = "▶ 음성 해설 듣기";
+  playBtn.onclick = () => playArtworkSpeech(item);
 
   const pauseBtn = document.createElement("button");
   pauseBtn.type = "button";
   pauseBtn.className = "tts-btn secondary";
-  pauseBtn.textContent = "⏸ 일시정지";
+  pauseBtn.textContent = "⏸ 일시정지/재개";
+  pauseBtn.onclick = () => toggleArtworkSpeech(item);
 
   const stopBtn = document.createElement("button");
   stopBtn.type = "button";
   stopBtn.className = "tts-btn secondary";
   stopBtn.textContent = "■ 정지";
+  stopBtn.onclick = () => stopSpeech();
 
   const rateBtn = document.createElement("button");
   rateBtn.type = "button";
   rateBtn.className = "tts-btn secondary";
   rateBtn.textContent = `${ttsRate.toFixed(1)}x`;
-
-  playBtn.onclick = () => {
-    const synth = window.speechSynthesis;
-    if (synth.paused) {
-      synth.resume();
-      statusSpan.textContent = "재생 중...";
-      return;
-    }
-
-    synth.cancel();
-    const titlePart = item.title_ko || item.title_en || "";
-    const artistPart = item.artist_ko || item.artist_en || "";
-    const bodyPart = item.description_ko;
-    const fullText = `${titlePart}. 작가: ${artistPart}. ${bodyPart}`;
-
-    const utterance = new SpeechSynthesisUtterance(fullText);
-    utterance.lang = "ko-KR";
-    utterance.rate = ttsRate;
-
-    const voices = synth.getVoices();
-    const koVoice = voices.find((v) => v.lang && v.lang.toLowerCase().includes("ko"));
-    if (koVoice) utterance.voice = koVoice;
-
-    utterance.onstart = () => {
-      statusSpan.textContent = "재생 중...";
-    };
-    utterance.onend = () => {
-      statusSpan.textContent = "재생 완료";
-    };
-    utterance.onerror = () => {
-      statusSpan.textContent = "재생 중단됨";
-    };
-
-    synth.speak(utterance);
-  };
-
-  pauseBtn.onclick = () => {
-    const synth = window.speechSynthesis;
-    if (synth.speaking && !synth.paused) {
-      synth.pause();
-      statusSpan.textContent = "일시정지됨";
-    }
-  };
-
-  stopBtn.onclick = () => {
-    stopSpeech();
-    statusSpan.textContent = "정지됨";
-  };
-
   rateBtn.onclick = () => {
     ttsRate = ttsRate === 1.0 ? 1.2 : ttsRate === 1.2 ? 1.4 : 1.0;
     rateBtn.textContent = `${ttsRate.toFixed(1)}x`;
-    if (window.speechSynthesis.speaking) {
-      playBtn.click();
+    if (currentSpeakingId === String(item.inventory_id)) {
+      playArtworkSpeech(item);
     }
   };
 
@@ -1697,8 +1871,6 @@ function renderModalTtsBar(item) {
 }
 
 function openModal(item) {
-  stopSpeech();
-
   const highlight = isMasterpiece(item);
   const isNp = isNeuePinakothek(item);
   const originSuffix = isNp ? " · 노이 피나코테크 임시전시" : "";
@@ -1752,7 +1924,6 @@ function openModal(item) {
 }
 
 function closeModal() {
-  stopSpeech();
   detailModal.classList.remove("open");
 }
 
