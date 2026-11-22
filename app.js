@@ -837,7 +837,51 @@ function ensureLicenseFooter() {
   container.appendChild(footer);
 }
 
-// --- Room Options, Quick Jump & Adjacent Room Navigation ---
+function romanToNumber(romanStr) {
+  const clean = romanStr.toUpperCase().replace(/[^IVXLCDM]/g, "");
+  if (!clean) return 999;
+  const map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+  let total = 0;
+  for (let i = 0; i < clean.length; i++) {
+    const curr = map[clean[i]] || 0;
+    const next = map[clean[i + 1]] || 0;
+    total += curr < next ? -curr : curr;
+  }
+  return total || 999;
+}
+
+function parseRoomSortKey(roomStr) {
+  // 층 우선순위: 1층(OG) -> 지하층(EG) -> 기타(입구홀 등)
+  const floorOrder = roomStr.startsWith("AP OG") ? 1 : roomStr.startsWith("AP EG") ? 2 : 3;
+  const label = simplifyRoomLabel(roomStr);
+
+  // Saal 로마숫자 패턴 (예: Saal I, Saal IIa, Saal IX, Saal XIIb)
+  const saalMatch = label.match(/^Saal\s+([IVXLCDM]+)([a-z]*)/i);
+  if (saalMatch) {
+    return {
+      floorOrder,
+      typeOrder: 1, // 대형 홀(Saal) 우선
+      num: romanToNumber(saalMatch[1]),
+      suffix: (saalMatch[2] || "").toLowerCase(),
+      raw: label
+    };
+  }
+
+  // Kabinett 아라비아 숫자 패턴 (예: Kabinett 1-2, Kabinett 12)
+  const kabMatch = label.match(/^Kabinett\s+(\d+)(.*)/i);
+  if (kabMatch) {
+    return {
+      floorOrder,
+      typeOrder: 2, // 소전시실(Kabinett) 다음 순서
+      num: parseInt(kabMatch[1], 10),
+      suffix: (kabMatch[2] || "").toLowerCase(),
+      raw: label
+    };
+  }
+
+  return { floorOrder, typeOrder: 3, num: 999, suffix: "", raw: label };
+}
+
 function getSortedRoomsList(selectedFloor = "ALL", selectedCollection = "ALL") {
   const rooms = new Set();
   allArtworks.forEach((item) => {
@@ -850,7 +894,16 @@ function getSortedRoomsList(selectedFloor = "ALL", selectedCollection = "ALL") {
       rooms.add(item.room);
     }
   });
-  return Array.from(rooms).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+  return Array.from(rooms).sort((a, b) => {
+    const ka = parseRoomSortKey(a);
+    const kb = parseRoomSortKey(b);
+    if (ka.floorOrder !== kb.floorOrder) return ka.floorOrder - kb.floorOrder;
+    if (ka.typeOrder !== kb.typeOrder) return ka.typeOrder - kb.typeOrder;
+    if (ka.num !== kb.num) return ka.num - kb.num;
+    if (ka.suffix !== kb.suffix) return ka.suffix.localeCompare(kb.suffix);
+    return ka.raw.localeCompare(kb.raw, undefined, { numeric: true });
+  });
 }
 
 function populateRoomOptions() {
