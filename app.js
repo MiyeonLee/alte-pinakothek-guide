@@ -1,7 +1,8 @@
 const CACHE_KEY = "ap_artworks_cache_v2";
 let allArtworks = [];
-let currentTab = "ARTWORKS"; // "ARTWORKS" | "MOVEMENTS" | "ARTISTS"
+let currentTab = "ARTWORKS"; // "ARTWORKS" | "ROUTES" | "MOVEMENTS" | "ARTISTS"
 let selectedMovementFilter = "ALL";
+let selectedRouteId = "route-2h"; // 기본값: 2시간 표준 코스
 
 const floorSelect = document.getElementById("floorSelect");
 const roomSelect = document.getElementById("roomSelect");
@@ -294,6 +295,48 @@ function injectAppStyles() {
       color: #334155;
       text-decoration: underline;
     }
+    .ap-route-step {
+      position: relative;
+      padding: 14px 16px;
+      margin-top: 12px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #1a365d;
+    }
+    .ap-route-step-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .ap-route-step-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #1a365d;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .ap-route-step-room {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .ap-route-step-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 4px 0 6px;
+    }
+    .ap-route-step-desc {
+      font-size: 0.88rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0 0 10px;
+    }
   `;
   document.head.appendChild(style);
 }
@@ -361,8 +404,9 @@ function ensureNavigationAndGuideContainers() {
   navBar.className = "ap-nav-tabs";
   navBar.setAttribute("aria-label", "콘텐츠 보기 전환");
 
-  const tabs = [
+const tabs = [
     { id: "ARTWORKS", label: "작품 목록" },
+    { id: "ROUTES", label: "추천 관람 동선" },
     { id: "MOVEMENTS", label: "미술 사조별 해설" },
     { id: "ARTISTS", label: "작가별 개요" }
   ];
@@ -402,13 +446,20 @@ function switchTab(tabId) {
     document.getElementById("collectionSelect")
   ];
 
-  if (tabId === "ARTWORKS") {
+if (tabId === "ARTWORKS") {
     artworkGrid.style.display = "";
     if (guideSection) guideSection.classList.remove("active");
     filterControls.forEach((el) => {
       if (el) el.disabled = false;
     });
     renderArtworks();
+  } else if (tabId === "ROUTES") {
+    artworkGrid.style.display = "none";
+    if (guideSection) guideSection.classList.add("active");
+    filterControls.forEach((el) => {
+      if (el) el.disabled = true;
+    });
+    renderViewingRoutes();
   } else {
     artworkGrid.style.display = "none";
     if (guideSection) guideSection.classList.add("active");
@@ -723,7 +774,154 @@ function renderArtHistoryGuide() {
   }
 }
 
+function renderViewingRoutes() {
+  const guideSection = document.getElementById("apGuideSection");
+  if (!guideSection) return;
+
+  if (typeof VIEWING_ROUTES === "undefined") {
+    guideSection.innerHTML =
+      '<div class="ap-guide-card">viewingRoutesMaster.js 데이터가 로드되지 않았습니다. index.html에 스크립트를 추가해주세요.</div>';
+    return;
+  }
+
+  const query = searchInput.value.trim().toLowerCase();
+  guideSection.innerHTML = "";
+
+  // 소요 시간 선택 버튼 바 (1시간 / 2시간 / 3시간+)
+  const selectorBar = document.createElement("div");
+  selectorBar.className = "ap-movement-filter-bar";
+
+  VIEWING_ROUTES.forEach((route) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = selectedRouteId === route.id ? "ap-filter-chip active" : "ap-filter-chip";
+    btn.textContent = route.durationBadge;
+    btn.onclick = () => {
+      selectedRouteId = route.id;
+      renderViewingRoutes();
+    };
+    selectorBar.appendChild(btn);
+  });
+
+  guideSection.appendChild(selectorBar);
+
+  const activeRoute = VIEWING_ROUTES.find((r) => r.id === selectedRouteId) || VIEWING_ROUTES[0];
+  countText.textContent = `${activeRoute.durationBadge} · 총 ${activeRoute.steps.length}개 구간 동선`;
+
+  const card = document.createElement("article");
+  card.className = "ap-guide-card";
+
+  const header = document.createElement("div");
+  header.className = "ap-guide-card-header";
+
+  const titleWrap = document.createElement("div");
+  const h2 = document.createElement("h2");
+  h2.className = "ap-guide-card-title";
+  h2.textContent = activeRoute.title;
+
+  const sub = document.createElement("div");
+  sub.className = "ap-guide-card-sub";
+  sub.textContent = `추천 대상: ${activeRoute.targetAudience}`;
+
+  titleWrap.appendChild(h2);
+  titleWrap.appendChild(sub);
+
+  const badges = document.createElement("div");
+  badges.className = "ap-guide-badges";
+  badges.innerHTML = `<span class="ap-pill">${activeRoute.durationBadge}</span>`;
+
+  header.appendChild(titleWrap);
+  header.appendChild(badges);
+
+  const summary = document.createElement("p");
+  summary.className = "ap-guide-summary";
+  summary.textContent = activeRoute.summary;
+
+  const tipsList = document.createElement("ul");
+  tipsList.className = "ap-guide-features";
+  activeRoute.tips.forEach((tip) => {
+    const li = document.createElement("li");
+    li.textContent = tip;
+    tipsList.appendChild(li);
+  });
+
+  card.appendChild(header);
+  card.appendChild(summary);
+  card.appendChild(tipsList);
+
+  // 각 동선 단계별 카드 및 대표 전시작 칩 연결
+  activeRoute.steps.forEach((step) => {
+    const stepBox = document.createElement("div");
+    stepBox.className = "ap-route-step";
+
+    const stepHeader = document.createElement("div");
+    stepHeader.className = "ap-route-step-header";
+    stepHeader.innerHTML = `
+      <span class="ap-route-step-badge">STEP ${step.stepNumber} · ${step.estimatedTime}</span>
+      <span class="ap-route-step-room">${step.roomLabel}</span>
+    `;
+
+    const stepTitle = document.createElement("div");
+    stepTitle.className = "ap-route-step-title";
+    stepTitle.textContent = step.focusTitle;
+
+    const stepDesc = document.createElement("p");
+    stepDesc.className = "ap-route-step-desc";
+    stepDesc.textContent = step.description;
+
+    stepBox.appendChild(stepHeader);
+    stepBox.appendChild(stepTitle);
+    stepBox.appendChild(stepDesc);
+
+    // 해당 구간 주요 작가의 현재 전시작(핵심 걸작/한글 해설작 우선) 매칭
+    const lowerArtists = step.featuredArtists.map((a) => a.toLowerCase());
+    let matchedWorks = allArtworks.filter((art) => {
+      const en = (art.artist_en || "").toLowerCase();
+      if (!lowerArtists.includes(en)) return false;
+      if (query) {
+        const hay = [art.title_ko, art.title_en, art.artist_ko, art.artist_en, art.room]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return hay.includes(query);
+      }
+      return true;
+    });
+
+    // 핵심 걸작 > 한글 해설 보유작 순으로 정렬 후 최대 6점 표시
+    matchedWorks.sort((a, b) => {
+      const scoreA = (isMasterpiece(a) ? 2 : 0) + (a.description_ko ? 1 : 0);
+      const scoreB = (isMasterpiece(b) ? 2 : 0) + (b.description_ko ? 1 : 0);
+      return scoreB - scoreA;
+    });
+    const displayWorks = matchedWorks.slice(0, 6);
+
+    if (displayWorks.length > 0) {
+      const worksTitle = document.createElement("div");
+      worksTitle.className = "ap-linked-works-title";
+      worksTitle.textContent = `이 구간의 추천 전시작 (클릭 시 도슨트 해설 보기)`;
+
+      const worksGrid = document.createElement("div");
+      worksGrid.className = "ap-linked-works-grid";
+      displayWorks.forEach((work) => {
+        worksGrid.appendChild(createWorkChipElement(work));
+      });
+
+      stepBox.appendChild(worksTitle);
+      stepBox.appendChild(worksGrid);
+    }
+
+    card.appendChild(stepBox);
+  });
+
+  guideSection.appendChild(card);
+}
+
 function renderArtworks() {
+if (currentTab === "ROUTES") {
+    renderViewingRoutes();
+    return;
+  }
   if (currentTab !== "ARTWORKS") {
     renderArtHistoryGuide();
     return;

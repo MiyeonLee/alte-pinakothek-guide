@@ -1,6 +1,13 @@
-const STATIC_CACHE = "ap-docent-static-v7";
+const STATIC_CACHE = "ap-docent-static-v8";
 const CACHE_PREFIX = "ap-docent-static-";
-const ASSETS = ["./", "./index.html", "./app.js", "./artworks.json", "./artHistoryMaster.json"];
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./app.js",
+  "./artworks.json",
+  "./artHistoryMaster.js",
+  "./viewingRoutesMaster.js"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
