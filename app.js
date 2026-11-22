@@ -1,8 +1,18 @@
 const CACHE_KEY = "ap_artworks_cache_v2";
+const WISHLIST_STORAGE_KEY = "ap_wishlist_v1";
+const VISITED_STORAGE_KEY = "ap_visited_v1";
+
 let allArtworks = [];
 let currentTab = "ARTWORKS"; // "ARTWORKS" | "ROUTES" | "MOVEMENTS" | "ARTISTS"
 let selectedMovementFilter = "ALL";
-let selectedRouteId = "route-2h"; // 기본값: 2시간 표준 코스
+let selectedRouteId = "route-2h";
+
+// Personal travel checklist sets (persisted in localStorage)
+let wishlistIds = new Set();
+let visitedIds = new Set();
+
+// TTS state
+let ttsRate = 1.0;
 
 const floorSelect = document.getElementById("floorSelect");
 const roomSelect = document.getElementById("roomSelect");
@@ -17,6 +27,64 @@ const statusBadge = document.getElementById("statusBadge");
 const detailModal = document.getElementById("detailModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 
+// --- Personal Checklist Storage Helpers ---
+function loadUserLists() {
+  try {
+    const rawWish = localStorage.getItem(WISHLIST_STORAGE_KEY);
+    if (rawWish) wishlistIds = new Set(JSON.parse(rawWish));
+  } catch (_) {
+    wishlistIds = new Set();
+  }
+  try {
+    const rawVisited = localStorage.getItem(VISITED_STORAGE_KEY);
+    if (rawVisited) visitedIds = new Set(JSON.parse(rawVisited));
+  } catch (_) {
+    visitedIds = new Set();
+  }
+}
+
+function saveUserLists() {
+  try {
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(Array.from(wishlistIds)));
+    localStorage.setItem(VISITED_STORAGE_KEY, JSON.stringify(Array.from(visitedIds)));
+  } catch (_) {}
+}
+
+function toggleWishlist(inventoryId, e) {
+  if (e) e.stopPropagation();
+  const id = String(inventoryId);
+  if (wishlistIds.has(id)) {
+    wishlistIds.delete(id);
+  } else {
+    wishlistIds.add(id);
+  }
+  saveUserLists();
+  refreshCurrentView();
+}
+
+function toggleVisited(inventoryId, e) {
+  if (e) e.stopPropagation();
+  const id = String(inventoryId);
+  if (visitedIds.has(id)) {
+    visitedIds.delete(id);
+  } else {
+    visitedIds.add(id);
+  }
+  saveUserLists();
+  refreshCurrentView();
+}
+
+function refreshCurrentView() {
+  if (currentTab === "ARTWORKS") {
+    renderArtworks();
+  } else if (currentTab === "ROUTES") {
+    renderViewingRoutes();
+  } else {
+    renderArtHistoryGuide();
+  }
+}
+
+// --- Room & Artwork Classification Helpers ---
 function getFloorCategory(roomStr) {
   if (roomStr.startsWith("AP OG")) return "AP OG";
   if (roomStr.startsWith("AP EG")) return "AP EG";
@@ -27,7 +95,6 @@ function simplifyRoomLabel(roomStr) {
   return roomStr.replace(/^AP\s+(OG|EG)\s*->\s*/, "");
 }
 
-// Helper function to determine masterpiece status from existing schema
 function isMasterpiece(artwork) {
   return (
     artwork.needs_translation === false &&
@@ -36,7 +103,6 @@ function isMasterpiece(artwork) {
   );
 }
 
-// Helper function to identify Neue Pinakothek (NP) temporary exhibits
 function isNeuePinakothek(artwork) {
   if (artwork.collection === "NP" || artwork.collection === "Neue Pinakothek") return true;
   if (artwork.collection === "AP") return false;
@@ -45,7 +111,24 @@ function isNeuePinakothek(artwork) {
   );
 }
 
-// Inject highlight, NP loan badge, CC BY-SA 4.0 attribution, and Art History tab styles
+// Roman numeral <-> Arabic helper for quick room jump
+const ROMAN_MAP = {
+  "1": ["i"],
+  "2": ["ii", "iia", "iib"],
+  "3": ["iii"],
+  "4": ["iv"],
+  "5": ["v"],
+  "6": ["vi"],
+  "7": ["vii"],
+  "8": ["viii"],
+  "9": ["ix"],
+  "10": ["x"],
+  "11": ["xi"],
+  "12": ["xii", "xiib"],
+  "13": ["xiii"]
+};
+
+// --- Styles Injection ---
 function injectAppStyles() {
   if (document.getElementById("ap-extended-styles")) return;
   const style = document.createElement("style");
@@ -58,6 +141,43 @@ function injectAppStyles() {
     }
     .card.is-np-loan {
       border-left: 4px solid #0f766e;
+    }
+    .card.is-visited {
+      opacity: 0.84;
+      background-color: #f8fafc;
+    }
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .card-action-group {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .mini-action-btn {
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      cursor: pointer;
+      line-height: 1.3;
+    }
+    .mini-action-btn.active-wish {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #b45309;
+    }
+    .mini-action-btn.active-visited {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #15803d;
     }
     .masterpiece-tag {
       display: inline-block;
@@ -81,14 +201,20 @@ function injectAppStyles() {
       margin-top: 6px;
       margin-right: 6px;
     }
+    .extra-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
     .ap-collection-select {
-      margin-left: 12px;
       padding: 5px 10px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background-color: #ffffff;
       color: #1e293b;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -99,21 +225,95 @@ function injectAppStyles() {
       gap: 4px;
       margin-top: 4px;
     }
+    /* Quick Room Jump Bar */
+    .ap-quick-jump-bar {
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 6px 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+    }
+    .ap-quick-jump-bar.visible {
+      display: flex;
+    }
+    .ap-quick-jump-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+    .ap-quick-jump-btn {
+      border: 1px solid #3b82f6;
+      background: #ffffff;
+      color: #1e40af;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      cursor: pointer;
+    }
+    /* Adjacent Room Navigator */
+    .ap-room-nav-bar {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 16px 4px;
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+    }
+    .ap-room-nav-bar.visible {
+      display: flex;
+    }
+    .ap-room-nav-btn {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      max-width: 36%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ap-room-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+    .ap-room-nav-current {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a365d;
+      text-align: center;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    /* Navigation Tabs */
     .ap-nav-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 14px 0 16px;
+      margin: 12px 16px 12px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 10px;
     }
     .ap-nav-tab-btn {
-      padding: 8px 16px;
+      padding: 7px 13px;
       border: 1px solid #cbd5e1;
       background-color: #f8fafc;
       color: #334155;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -130,7 +330,7 @@ function injectAppStyles() {
       display: none;
       flex-direction: column;
       gap: 18px;
-      margin-top: 8px;
+      margin: 8px 16px 0;
     }
     .ap-guide-section.active {
       display: flex;
@@ -171,7 +371,7 @@ function injectAppStyles() {
       margin-bottom: 10px;
     }
     .ap-guide-card-title {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 700;
       color: #0f172a;
       margin: 0;
@@ -267,34 +467,7 @@ function injectAppStyles() {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .modal-credit-box {
-      margin-top: 8px;
-      margin-bottom: 12px;
-      padding: 6px 10px;
-      background-color: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      color: #475569;
-      line-height: 1.45;
-    }
-    .modal-credit-box a {
-      color: #2563eb;
-      text-decoration: underline;
-    }
-    .ap-license-footer {
-      margin-top: 32px;
-      padding: 18px 16px;
-      border-top: 1px solid #e2e8f0;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #64748b;
-      line-height: 1.6;
-    }
-    .ap-license-footer a {
-      color: #334155;
-      text-decoration: underline;
-    }
+    /* Route Timeline Step */
     .ap-route-step {
       position: relative;
       padding: 14px 16px;
@@ -337,96 +510,209 @@ function injectAppStyles() {
       line-height: 1.55;
       margin: 0 0 10px;
     }
+    /* Modal Checklist & TTS Audio Player */
+    .modal-personal-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .modal-personal-btn {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .modal-personal-btn.active-wish {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #b45309;
+    }
+    .modal-personal-btn.active-visited {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #15803d;
+    }
+    .modal-tts-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 8px;
+    }
+    .tts-btn {
+      border: 1px solid #4f46e5;
+      background: #4f46e5;
+      color: #ffffff;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .tts-btn.secondary {
+      background: #ffffff;
+      color: #3730a3;
+    }
+    .tts-status {
+      font-size: 11px;
+      color: #4338ca;
+      margin-left: auto;
+      font-weight: 600;
+    }
+    .modal-credit-box {
+      margin-top: 8px;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: #475569;
+      line-height: 1.45;
+    }
+    .modal-credit-box a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .ap-license-footer {
+      margin-top: 32px;
+      padding: 18px 16px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+    .ap-license-footer a {
+      color: #334155;
+      text-decoration: underline;
+    }
   `;
   document.head.appendChild(style);
 }
 
-// Dynamically create masterpiece filter checkbox next to koOnlyCheckbox if missing in HTML
-function ensureMasterpieceFilterControl() {
-  if (document.getElementById("masterpieceOnlyCheckbox") || !koOnlyCheckbox) {
-    return document.getElementById("masterpieceOnlyCheckbox");
-  }
-
-  const label = document.createElement("label");
-  label.className = koOnlyCheckbox.parentElement?.className || "filter-checkbox";
-  label.style.marginLeft = "12px";
-  label.style.cursor = "pointer";
-
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.id = "masterpieceOnlyCheckbox";
-
-  label.appendChild(checkbox);
-  label.appendChild(document.createTextNode(" 핵심 걸작만 보기"));
+// --- Dynamic Filter & Navigation UI Controls ---
+function ensureExtendedFilterControls() {
+  if (!koOnlyCheckbox) return;
 
   const parentLabel = koOnlyCheckbox.closest("label");
-  if (parentLabel && parentLabel.parentNode) {
-    parentLabel.parentNode.insertBefore(label, parentLabel.nextSibling);
-  } else if (koOnlyCheckbox.parentNode) {
-    koOnlyCheckbox.parentNode.insertBefore(label, koOnlyCheckbox.nextSibling);
+  const controlsContainer = parentLabel?.parentElement;
+  if (!controlsContainer) return;
+
+  let extraRow = document.getElementById("apExtraFilterRow");
+  if (!extraRow) {
+    extraRow = document.createElement("div");
+    extraRow.id = "apExtraFilterRow";
+    extraRow.className = "extra-filter-row";
+    controlsContainer.appendChild(extraRow);
   }
 
-  return checkbox;
+  // 1. Masterpiece filter
+  if (!document.getElementById("masterpieceOnlyCheckbox")) {
+    const mpLabel = document.createElement("label");
+    mpLabel.className = "filter-toggle";
+    mpLabel.style.cursor = "pointer";
+    const mpCb = document.createElement("input");
+    mpCb.type = "checkbox";
+    mpCb.id = "masterpieceOnlyCheckbox";
+    mpCb.onchange = renderArtworks;
+    mpLabel.appendChild(mpCb);
+    mpLabel.appendChild(document.createTextNode(" 핵심 걸작만"));
+    extraRow.appendChild(mpLabel);
+  }
+
+  // 2. Wishlist filter
+  if (!document.getElementById("wishlistOnlyCheckbox")) {
+    const wishLabel = document.createElement("label");
+    wishLabel.className = "filter-toggle";
+    wishLabel.style.cursor = "pointer";
+    const wishCb = document.createElement("input");
+    wishCb.type = "checkbox";
+    wishCb.id = "wishlistOnlyCheckbox";
+    wishCb.onchange = renderArtworks;
+    wishLabel.appendChild(wishCb);
+    wishLabel.appendChild(document.createTextNode(" ☆ 위시리스트만"));
+    extraRow.appendChild(wishLabel);
+  }
+
+  // 3. Collection filter
+  if (!document.getElementById("collectionSelect")) {
+    const select = document.createElement("select");
+    select.id = "collectionSelect";
+    select.className = "ap-collection-select";
+    select.setAttribute("aria-label", "소장처 필터");
+    select.innerHTML = `
+      <option value="ALL">전체 소장처 (AP + NP)</option>
+      <option value="AP">알테 피나코테크 (14~18세기)</option>
+      <option value="NP">노이 피나코테크 임시전시 (19세기)</option>
+    `;
+    select.onchange = () => {
+      populateRoomOptions();
+      renderArtworks();
+    };
+    extraRow.appendChild(select);
+  }
+
+  // 4. Quick Room Jump Bar right below searchInput
+  if (!document.getElementById("apQuickJumpBar") && searchInput) {
+    const jumpBar = document.createElement("div");
+    jumpBar.id = "apQuickJumpBar";
+    jumpBar.className = "ap-quick-jump-bar";
+    searchInput.parentNode.insertBefore(jumpBar, searchInput.nextSibling);
+  }
 }
 
-// Dynamically create collection filter dropdown ("ALL" | "AP" | "NP")
-function ensureCollectionFilterControl() {
-  if (document.getElementById("collectionSelect") || !koOnlyCheckbox) {
-    return document.getElementById("collectionSelect");
-  }
-
-  const select = document.createElement("select");
-  select.id = "collectionSelect";
-  select.className = "ap-collection-select";
-  select.setAttribute("aria-label", "소장처 필터");
-  select.innerHTML = `
-    <option value="ALL">전체 소장처 (AP + NP)</option>
-    <option value="AP">알테 피나코테크 (14~18세기)</option>
-    <option value="NP">노이 피나코테크 임시전시 (19세기)</option>
-  `;
-
-  const mpLabel = document.getElementById("masterpieceOnlyCheckbox")?.closest("label");
-  const anchor = mpLabel || koOnlyCheckbox.closest("label") || koOnlyCheckbox;
-  if (anchor && anchor.parentNode) {
-    anchor.parentNode.insertBefore(select, anchor.nextSibling);
-  }
-
-  return select;
-}
-
-// Create navigation tabs ("작품 목록" | "미술 사조별 해설" | "작가별 개요") and guide container
 function ensureNavigationAndGuideContainers() {
-  if (document.getElementById("apNavTabs")) return;
   if (!artworkGrid || !artworkGrid.parentNode) return;
 
-  const navBar = document.createElement("nav");
-  navBar.id = "apNavTabs";
-  navBar.className = "ap-nav-tabs";
-  navBar.setAttribute("aria-label", "콘텐츠 보기 전환");
+  if (!document.getElementById("apNavTabs")) {
+    const navBar = document.createElement("nav");
+    navBar.id = "apNavTabs";
+    navBar.className = "ap-nav-tabs";
+    navBar.setAttribute("aria-label", "콘텐츠 보기 전환");
 
-const tabs = [
-    { id: "ARTWORKS", label: "작품 목록" },
-    { id: "ROUTES", label: "추천 관람 동선" },
-    { id: "MOVEMENTS", label: "미술 사조별 해설" },
-    { id: "ARTISTS", label: "작가별 개요" }
-  ];
+    const tabs = [
+      { id: "ARTWORKS", label: "작품 목록" },
+      { id: "ROUTES", label: "추천 관람 동선" },
+      { id: "MOVEMENTS", label: "미술 사조별 해설" },
+      { id: "ARTISTS", label: "작가별 개요" }
+    ];
 
-  tabs.forEach((tab) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = tab.id === currentTab ? "ap-nav-tab-btn active" : "ap-nav-tab-btn";
-    btn.dataset.tabId = tab.id;
-    btn.textContent = tab.label;
-    btn.onclick = () => switchTab(tab.id);
-    navBar.appendChild(btn);
-  });
+    tabs.forEach((tab) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = tab.id === currentTab ? "ap-nav-tab-btn active" : "ap-nav-tab-btn";
+      btn.dataset.tabId = tab.id;
+      btn.textContent = tab.label;
+      btn.onclick = () => switchTab(tab.id);
+      navBar.appendChild(btn);
+    });
 
-  const guideSection = document.createElement("section");
-  guideSection.id = "apGuideSection";
-  guideSection.className = "ap-guide-section";
+    artworkGrid.parentNode.insertBefore(navBar, artworkGrid);
+  }
 
-  artworkGrid.parentNode.insertBefore(navBar, artworkGrid);
-  artworkGrid.parentNode.insertBefore(guideSection, artworkGrid.nextSibling);
+  if (!document.getElementById("apRoomNavBar")) {
+    const roomNav = document.createElement("div");
+    roomNav.id = "apRoomNavBar";
+    roomNav.className = "ap-room-nav-bar";
+    artworkGrid.parentNode.insertBefore(roomNav, artworkGrid);
+  }
+
+  if (!document.getElementById("apGuideSection")) {
+    const guideSection = document.createElement("section");
+    guideSection.id = "apGuideSection";
+    guideSection.className = "ap-guide-section";
+    artworkGrid.parentNode.insertBefore(guideSection, artworkGrid.nextSibling);
+  }
 }
 
 function switchTab(tabId) {
@@ -438,39 +724,38 @@ function switchTab(tabId) {
   });
 
   const guideSection = document.getElementById("apGuideSection");
+  const roomNav = document.getElementById("apRoomNavBar");
   const filterControls = [
     floorSelect,
     roomSelect,
     koOnlyCheckbox,
     document.getElementById("masterpieceOnlyCheckbox"),
+    document.getElementById("wishlistOnlyCheckbox"),
     document.getElementById("collectionSelect")
   ];
 
-if (tabId === "ARTWORKS") {
+  if (tabId === "ARTWORKS") {
     artworkGrid.style.display = "";
     if (guideSection) guideSection.classList.remove("active");
     filterControls.forEach((el) => {
       if (el) el.disabled = false;
     });
     renderArtworks();
-  } else if (tabId === "ROUTES") {
-    artworkGrid.style.display = "none";
-    if (guideSection) guideSection.classList.add("active");
-    filterControls.forEach((el) => {
-      if (el) el.disabled = true;
-    });
-    renderViewingRoutes();
   } else {
     artworkGrid.style.display = "none";
+    if (roomNav) roomNav.classList.remove("visible");
     if (guideSection) guideSection.classList.add("active");
     filterControls.forEach((el) => {
       if (el) el.disabled = true;
     });
-    renderArtHistoryGuide();
+    if (tabId === "ROUTES") {
+      renderViewingRoutes();
+    } else {
+      renderArtHistoryGuide();
+    }
   }
 }
 
-// Ensure global CC BY-SA 4.0 attribution & non-official disclaimer footer exists
 function ensureLicenseFooter() {
   if (document.getElementById("apLicenseFooter")) return;
 
@@ -493,12 +778,9 @@ function ensureLicenseFooter() {
   container.appendChild(footer);
 }
 
-function populateRoomOptions() {
-  const selectedFloor = floorSelect.value;
-  const selectedCollection = document.getElementById("collectionSelect")?.value || "ALL";
-  const prevRoom = roomSelect.value;
+// --- Room Options, Quick Jump & Adjacent Room Navigation ---
+function getSortedRoomsList(selectedFloor = "ALL", selectedCollection = "ALL") {
   const rooms = new Set();
-
   allArtworks.forEach((item) => {
     const isNp = isNeuePinakothek(item);
     if (selectedCollection === "AP" && isNp) return;
@@ -509,8 +791,15 @@ function populateRoomOptions() {
       rooms.add(item.room);
     }
   });
+  return Array.from(rooms).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+}
 
-  const sortedRooms = Array.from(rooms).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+function populateRoomOptions() {
+  const selectedFloor = floorSelect.value;
+  const selectedCollection = document.getElementById("collectionSelect")?.value || "ALL";
+  const prevRoom = roomSelect.value;
+  const sortedRooms = getSortedRoomsList(selectedFloor, selectedCollection);
+
   roomSelect.innerHTML = '<option value="ALL">전체 전시실 (' + sortedRooms.length + "개)</option>";
 
   sortedRooms.forEach((room) => {
@@ -520,14 +809,128 @@ function populateRoomOptions() {
     roomSelect.appendChild(opt);
   });
 
-  if (rooms.has(prevRoom)) {
+  if (sortedRooms.includes(prevRoom)) {
     roomSelect.value = prevRoom;
   }
 }
 
+function updateQuickRoomJumpBar(rawQuery) {
+  const jumpBar = document.getElementById("apQuickJumpBar");
+  if (!jumpBar) return;
+
+  const q = rawQuery.trim().toLowerCase();
+  if (!q || q.length > 15) {
+    jumpBar.classList.remove("visible");
+    jumpBar.innerHTML = "";
+    return;
+  }
+
+  const allRooms = getSortedRoomsList("ALL", "ALL");
+  const romanTargets = ROMAN_MAP[q] || [];
+
+  const matchedRooms = allRooms.filter((room) => {
+    const simple = simplifyRoomLabel(room).toLowerCase();
+    if (simple.includes(q)) return true;
+    if (romanTargets.length > 0) {
+      return romanTargets.some((rom) => new RegExp(`\\bsaal\\s+${rom}\\b`, "i").test(simple));
+    }
+    return false;
+  });
+
+  if (matchedRooms.length === 0 || matchedRooms.length > 6) {
+    jumpBar.classList.remove("visible");
+    jumpBar.innerHTML = "";
+    return;
+  }
+
+  jumpBar.innerHTML = '<span class="ap-quick-jump-label">전시실 빠른 이동:</span>';
+  matchedRooms.forEach((room) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "ap-quick-jump-btn";
+    btn.textContent = room.replace(/^AP\s+/, "");
+    btn.onclick = () => {
+      if (currentTab !== "ARTWORKS") switchTab("ARTWORKS");
+      floorSelect.value = "ALL";
+      const colSel = document.getElementById("collectionSelect");
+      if (colSel) colSel.value = "ALL";
+      populateRoomOptions();
+      roomSelect.value = room;
+      searchInput.value = "";
+      jumpBar.classList.remove("visible");
+      renderArtworks();
+    };
+    jumpBar.appendChild(btn);
+  });
+  jumpBar.classList.add("visible");
+}
+
+function updateAdjacentRoomNav() {
+  const navBar = document.getElementById("apRoomNavBar");
+  if (!navBar) return;
+
+  const currentRoom = roomSelect.value;
+  if (currentTab !== "ARTWORKS" || currentRoom === "ALL") {
+    navBar.classList.remove("visible");
+    return;
+  }
+
+  const selectedFloor = floorSelect.value;
+  const selectedCollection = document.getElementById("collectionSelect")?.value || "ALL";
+  const rooms = getSortedRoomsList(selectedFloor, selectedCollection);
+  const idx = rooms.indexOf(currentRoom);
+
+  if (idx === -1) {
+    navBar.classList.remove("visible");
+    return;
+  }
+
+  const prevRoom = idx > 0 ? rooms[idx - 1] : null;
+  const nextRoom = idx < rooms.length - 1 ? rooms[idx + 1] : null;
+
+  navBar.innerHTML = "";
+
+  const prevBtn = document.createElement("button");
+  prevBtn.type = "button";
+  prevBtn.className = "ap-room-nav-btn";
+  prevBtn.disabled = !prevRoom;
+  prevBtn.textContent = prevRoom ? `← ${simplifyRoomLabel(prevRoom)}` : "← 첫 전시실";
+  if (prevRoom) {
+    prevBtn.onclick = () => {
+      roomSelect.value = prevRoom;
+      renderArtworks();
+    };
+  }
+
+  const currentLabel = document.createElement("div");
+  currentLabel.className = "ap-room-nav-current";
+  currentLabel.textContent = currentRoom.replace(/^AP\s+/, "");
+
+  const nextBtn = document.createElement("button");
+  nextBtn.type = "button";
+  nextBtn.className = "ap-room-nav-btn";
+  nextBtn.disabled = !nextRoom;
+  nextBtn.textContent = nextRoom ? `${simplifyRoomLabel(nextRoom)} →` : "마지막 전시실 →";
+  if (nextRoom) {
+    nextBtn.onclick = () => {
+      roomSelect.value = nextRoom;
+      renderArtworks();
+    };
+  }
+
+  navBar.appendChild(prevBtn);
+  navBar.appendChild(currentLabel);
+  navBar.appendChild(nextBtn);
+  navBar.classList.add("visible");
+}
+
+// --- Shared Work Chip for Guide & Route Tabs ---
 function createWorkChipElement(work) {
   const highlight = isMasterpiece(work);
   const isNp = isNeuePinakothek(work);
+  const idStr = String(work.inventory_id);
+  const isWished = wishlistIds.has(idStr);
+  const isDone = visitedIds.has(idStr);
 
   const chip = document.createElement("button");
   chip.type = "button";
@@ -553,7 +956,8 @@ function createWorkChipElement(work) {
 
   const titleEl = document.createElement("div");
   titleEl.className = "ap-work-chip-title";
-  titleEl.textContent = (highlight ? "★ " : "") + (work.title_ko || work.title_en);
+  const statusPrefix = (isDone ? "✓ " : "") + (isWished ? "♥ " : highlight ? "★ " : "");
+  titleEl.textContent = statusPrefix + (work.title_ko || work.title_en);
 
   const metaEl = document.createElement("div");
   metaEl.className = "ap-work-chip-meta";
@@ -567,6 +971,153 @@ function createWorkChipElement(work) {
   return chip;
 }
 
+// --- Viewing Routes Tab ---
+function renderViewingRoutes() {
+  const guideSection = document.getElementById("apGuideSection");
+  if (!guideSection) return;
+
+  if (typeof VIEWING_ROUTES === "undefined") {
+    guideSection.innerHTML =
+      '<div class="ap-guide-card">viewingRoutesMaster.js 데이터가 로드되지 않았습니다. index.html에 스크립트를 추가해주세요.</div>';
+    return;
+  }
+
+  const query = searchInput.value.trim().toLowerCase();
+  guideSection.innerHTML = "";
+
+  const selectorBar = document.createElement("div");
+  selectorBar.className = "ap-movement-filter-bar";
+
+  VIEWING_ROUTES.forEach((route) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = selectedRouteId === route.id ? "ap-filter-chip active" : "ap-filter-chip";
+    btn.textContent = route.durationBadge;
+    btn.onclick = () => {
+      selectedRouteId = route.id;
+      renderViewingRoutes();
+    };
+    selectorBar.appendChild(btn);
+  });
+
+  guideSection.appendChild(selectorBar);
+
+  const activeRoute = VIEWING_ROUTES.find((r) => r.id === selectedRouteId) || VIEWING_ROUTES[0];
+  countText.textContent = `${activeRoute.durationBadge} · 총 ${activeRoute.steps.length}개 구간 동선 (찜 ${wishlistIds.size}점 · 완료 ${visitedIds.size}점)`;
+
+  const card = document.createElement("article");
+  card.className = "ap-guide-card";
+
+  const header = document.createElement("div");
+  header.className = "ap-guide-card-header";
+
+  const titleWrap = document.createElement("div");
+  const h2 = document.createElement("h2");
+  h2.className = "ap-guide-card-title";
+  h2.textContent = activeRoute.title;
+
+  const sub = document.createElement("div");
+  sub.className = "ap-guide-card-sub";
+  sub.textContent = `추천 대상: ${activeRoute.targetAudience}`;
+
+  titleWrap.appendChild(h2);
+  titleWrap.appendChild(sub);
+
+  const badges = document.createElement("div");
+  badges.className = "ap-guide-badges";
+  badges.innerHTML = `<span class="ap-pill">${activeRoute.durationBadge}</span>`;
+
+  header.appendChild(titleWrap);
+  header.appendChild(badges);
+
+  const summary = document.createElement("p");
+  summary.className = "ap-guide-summary";
+  summary.textContent = activeRoute.summary;
+
+  const tipsList = document.createElement("ul");
+  tipsList.className = "ap-guide-features";
+  activeRoute.tips.forEach((tip) => {
+    const li = document.createElement("li");
+    li.textContent = tip;
+    tipsList.appendChild(li);
+  });
+
+  card.appendChild(header);
+  card.appendChild(summary);
+  card.appendChild(tipsList);
+
+  activeRoute.steps.forEach((step) => {
+    const stepBox = document.createElement("div");
+    stepBox.className = "ap-route-step";
+
+    const stepHeader = document.createElement("div");
+    stepHeader.className = "ap-route-step-header";
+    stepHeader.innerHTML = `
+      <span class="ap-route-step-badge">STEP ${step.stepNumber} · ${step.estimatedTime}</span>
+      <span class="ap-route-step-room">${step.roomLabel}</span>
+    `;
+
+    const stepTitle = document.createElement("div");
+    stepTitle.className = "ap-route-step-title";
+    stepTitle.textContent = step.focusTitle;
+
+    const stepDesc = document.createElement("p");
+    stepDesc.className = "ap-route-step-desc";
+    stepDesc.textContent = step.description;
+
+    stepBox.appendChild(stepHeader);
+    stepBox.appendChild(stepTitle);
+    stepBox.appendChild(stepDesc);
+
+    const lowerArtists = step.featuredArtists.map((a) => a.toLowerCase());
+    let matchedWorks = allArtworks.filter((art) => {
+      const en = (art.artist_en || "").toLowerCase();
+      if (!lowerArtists.includes(en)) return false;
+      if (query) {
+        const hay = [art.title_ko, art.title_en, art.artist_ko, art.artist_en, art.room]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return hay.includes(query);
+      }
+      return true;
+    });
+
+    matchedWorks.sort((a, b) => {
+      const scoreA =
+        (wishlistIds.has(String(a.inventory_id)) ? 4 : 0) +
+        (isMasterpiece(a) ? 2 : 0) +
+        (a.description_ko ? 1 : 0);
+      const scoreB =
+        (wishlistIds.has(String(b.inventory_id)) ? 4 : 0) +
+        (isMasterpiece(b) ? 2 : 0) +
+        (b.description_ko ? 1 : 0);
+      return scoreB - scoreA;
+    });
+    const displayWorks = matchedWorks.slice(0, 6);
+
+    if (displayWorks.length > 0) {
+      const worksTitle = document.createElement("div");
+      worksTitle.className = "ap-linked-works-title";
+      worksTitle.textContent = `이 구간의 추천 전시작 (클릭 시 도슨트 해설 보기)`;
+
+      const worksGrid = document.createElement("div");
+      worksGrid.className = "ap-linked-works-grid";
+      displayWorks.forEach((work) => {
+        worksGrid.appendChild(createWorkChipElement(work));
+      });
+
+      stepBox.appendChild(worksTitle);
+      stepBox.appendChild(worksGrid);
+    }
+
+    card.appendChild(stepBox);
+  });
+
+  guideSection.appendChild(card);
+}
+
+// --- Art History Guide Tab (Movements & Artists) ---
 function renderArtHistoryGuide() {
   const guideSection = document.getElementById("apGuideSection");
   if (!guideSection) return;
@@ -578,8 +1129,6 @@ function renderArtHistoryGuide() {
   }
 
   const query = searchInput.value.trim().toLowerCase();
-
-  // Include translated works AND Neue Pinakothek temporary works (even if pending Korean translation)
   const guideEligibleWorks = allArtworks.filter(
     (art) => art.needs_translation === false || Boolean(art.description_ko) || isNeuePinakothek(art)
   );
@@ -774,151 +1323,11 @@ function renderArtHistoryGuide() {
   }
 }
 
-function renderViewingRoutes() {
-  const guideSection = document.getElementById("apGuideSection");
-  if (!guideSection) return;
-
-  if (typeof VIEWING_ROUTES === "undefined") {
-    guideSection.innerHTML =
-      '<div class="ap-guide-card">viewingRoutesMaster.js 데이터가 로드되지 않았습니다. index.html에 스크립트를 추가해주세요.</div>';
-    return;
-  }
-
-  const query = searchInput.value.trim().toLowerCase();
-  guideSection.innerHTML = "";
-
-  // 소요 시간 선택 버튼 바 (1시간 / 2시간 / 3시간+)
-  const selectorBar = document.createElement("div");
-  selectorBar.className = "ap-movement-filter-bar";
-
-  VIEWING_ROUTES.forEach((route) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = selectedRouteId === route.id ? "ap-filter-chip active" : "ap-filter-chip";
-    btn.textContent = route.durationBadge;
-    btn.onclick = () => {
-      selectedRouteId = route.id;
-      renderViewingRoutes();
-    };
-    selectorBar.appendChild(btn);
-  });
-
-  guideSection.appendChild(selectorBar);
-
-  const activeRoute = VIEWING_ROUTES.find((r) => r.id === selectedRouteId) || VIEWING_ROUTES[0];
-  countText.textContent = `${activeRoute.durationBadge} · 총 ${activeRoute.steps.length}개 구간 동선`;
-
-  const card = document.createElement("article");
-  card.className = "ap-guide-card";
-
-  const header = document.createElement("div");
-  header.className = "ap-guide-card-header";
-
-  const titleWrap = document.createElement("div");
-  const h2 = document.createElement("h2");
-  h2.className = "ap-guide-card-title";
-  h2.textContent = activeRoute.title;
-
-  const sub = document.createElement("div");
-  sub.className = "ap-guide-card-sub";
-  sub.textContent = `추천 대상: ${activeRoute.targetAudience}`;
-
-  titleWrap.appendChild(h2);
-  titleWrap.appendChild(sub);
-
-  const badges = document.createElement("div");
-  badges.className = "ap-guide-badges";
-  badges.innerHTML = `<span class="ap-pill">${activeRoute.durationBadge}</span>`;
-
-  header.appendChild(titleWrap);
-  header.appendChild(badges);
-
-  const summary = document.createElement("p");
-  summary.className = "ap-guide-summary";
-  summary.textContent = activeRoute.summary;
-
-  const tipsList = document.createElement("ul");
-  tipsList.className = "ap-guide-features";
-  activeRoute.tips.forEach((tip) => {
-    const li = document.createElement("li");
-    li.textContent = tip;
-    tipsList.appendChild(li);
-  });
-
-  card.appendChild(header);
-  card.appendChild(summary);
-  card.appendChild(tipsList);
-
-  // 각 동선 단계별 카드 및 대표 전시작 칩 연결
-  activeRoute.steps.forEach((step) => {
-    const stepBox = document.createElement("div");
-    stepBox.className = "ap-route-step";
-
-    const stepHeader = document.createElement("div");
-    stepHeader.className = "ap-route-step-header";
-    stepHeader.innerHTML = `
-      <span class="ap-route-step-badge">STEP ${step.stepNumber} · ${step.estimatedTime}</span>
-      <span class="ap-route-step-room">${step.roomLabel}</span>
-    `;
-
-    const stepTitle = document.createElement("div");
-    stepTitle.className = "ap-route-step-title";
-    stepTitle.textContent = step.focusTitle;
-
-    const stepDesc = document.createElement("p");
-    stepDesc.className = "ap-route-step-desc";
-    stepDesc.textContent = step.description;
-
-    stepBox.appendChild(stepHeader);
-    stepBox.appendChild(stepTitle);
-    stepBox.appendChild(stepDesc);
-
-    // 해당 구간 주요 작가의 현재 전시작(핵심 걸작/한글 해설작 우선) 매칭
-    const lowerArtists = step.featuredArtists.map((a) => a.toLowerCase());
-    let matchedWorks = allArtworks.filter((art) => {
-      const en = (art.artist_en || "").toLowerCase();
-      if (!lowerArtists.includes(en)) return false;
-      if (query) {
-        const hay = [art.title_ko, art.title_en, art.artist_ko, art.artist_en, art.room]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        return hay.includes(query);
-      }
-      return true;
-    });
-
-    // 핵심 걸작 > 한글 해설 보유작 순으로 정렬 후 최대 6점 표시
-    matchedWorks.sort((a, b) => {
-      const scoreA = (isMasterpiece(a) ? 2 : 0) + (a.description_ko ? 1 : 0);
-      const scoreB = (isMasterpiece(b) ? 2 : 0) + (b.description_ko ? 1 : 0);
-      return scoreB - scoreA;
-    });
-    const displayWorks = matchedWorks.slice(0, 6);
-
-    if (displayWorks.length > 0) {
-      const worksTitle = document.createElement("div");
-      worksTitle.className = "ap-linked-works-title";
-      worksTitle.textContent = `이 구간의 추천 전시작 (클릭 시 도슨트 해설 보기)`;
-
-      const worksGrid = document.createElement("div");
-      worksGrid.className = "ap-linked-works-grid";
-      displayWorks.forEach((work) => {
-        worksGrid.appendChild(createWorkChipElement(work));
-      });
-
-      stepBox.appendChild(worksTitle);
-      stepBox.appendChild(worksGrid);
-    }
-
-    card.appendChild(stepBox);
-  });
-
-  guideSection.appendChild(card);
-}
-
+// --- Main Artworks List Tab ---
 function renderArtworks() {
-if (currentTab === "ROUTES") {
+  updateQuickRoomJumpBar(searchInput.value);
+
+  if (currentTab === "ROUTES") {
     renderViewingRoutes();
     return;
   }
@@ -927,22 +1336,29 @@ if (currentTab === "ROUTES") {
     return;
   }
 
+  updateAdjacentRoomNav();
+
   const floorVal = floorSelect.value;
   const roomVal = roomSelect.value;
   const query = searchInput.value.trim().toLowerCase();
   const koOnly = koOnlyCheckbox.checked;
   const mpCheckbox = document.getElementById("masterpieceOnlyCheckbox");
   const masterpieceOnly = mpCheckbox ? mpCheckbox.checked : false;
+  const wishCheckbox = document.getElementById("wishlistOnlyCheckbox");
+  const wishlistOnly = wishCheckbox ? wishCheckbox.checked : false;
   const collectionVal = document.getElementById("collectionSelect")?.value || "ALL";
 
   const filtered = allArtworks.filter((item) => {
     const isNp = isNeuePinakothek(item);
+    const idStr = String(item.inventory_id);
+
     if (collectionVal === "AP" && isNp) return false;
     if (collectionVal === "NP" && !isNp) return false;
     if (floorVal !== "ALL" && getFloorCategory(item.room) !== floorVal) return false;
     if (roomVal !== "ALL" && item.room !== roomVal) return false;
     if (koOnly && !item.description_ko) return false;
     if (masterpieceOnly && !isMasterpiece(item)) return false;
+    if (wishlistOnly && !wishlistIds.has(idStr)) return false;
 
     if (query) {
       const hay = [
@@ -962,20 +1378,23 @@ if (currentTab === "ROUTES") {
   });
 
   const masterpieceCount = filtered.filter(isMasterpiece).length;
-  const npCount = filtered.filter(isNeuePinakothek).length;
-  countText.textContent = `${filtered.length}점 표시 (전체 ${allArtworks.length}점 · NP 임시전시 ${npCount}점 · 핵심 걸작 ${masterpieceCount}점)`;
+  countText.textContent = `${filtered.length}점 표시 (전체 ${allArtworks.length}점 · 걸작 ${masterpieceCount}점 · 찜 ${wishlistIds.size}점 · 완료 ${visitedIds.size}점)`;
   artworkGrid.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
   filtered.forEach((item) => {
     const highlight = isMasterpiece(item);
     const isNp = isNeuePinakothek(item);
+    const idStr = String(item.inventory_id);
+    const isWished = wishlistIds.has(idStr);
+    const isDone = visitedIds.has(idStr);
 
     const card = document.createElement("article");
     card.className = [
       "card",
       highlight ? "is-masterpiece" : "",
-      isNp ? "is-np-loan" : ""
+      isNp ? "is-np-loan" : "",
+      isDone ? "is-visited" : ""
     ]
       .filter(Boolean)
       .join(" ");
@@ -990,15 +1409,40 @@ if (currentTab === "ROUTES") {
     body.className = "card-body";
 
     const topDiv = document.createElement("div");
+
+    const topRow = document.createElement("div");
+    topRow.className = "card-top-row";
+
     const roomTag = document.createElement("span");
     roomTag.className = "room-tag";
     roomTag.textContent = item.room.replace(/^AP\s+/, "");
+
+    const actionGroup = document.createElement("div");
+    actionGroup.className = "card-action-group";
+
+    const wishBtn = document.createElement("button");
+    wishBtn.type = "button";
+    wishBtn.className = isWished ? "mini-action-btn active-wish" : "mini-action-btn";
+    wishBtn.textContent = isWished ? "★ 찜" : "☆ 찜";
+    wishBtn.onclick = (e) => toggleWishlist(idStr, e);
+
+    const doneBtn = document.createElement("button");
+    doneBtn.type = "button";
+    doneBtn.className = isDone ? "mini-action-btn active-visited" : "mini-action-btn";
+    doneBtn.textContent = isDone ? "✓ 완료" : "관람";
+    doneBtn.onclick = (e) => toggleVisited(idStr, e);
+
+    actionGroup.appendChild(wishBtn);
+    actionGroup.appendChild(doneBtn);
+
+    topRow.appendChild(roomTag);
+    topRow.appendChild(actionGroup);
 
     const title = document.createElement("div");
     title.className = "title";
     title.textContent = item.title_ko ? `${item.title_ko} (${item.title_en})` : item.title_en;
 
-    topDiv.appendChild(roomTag);
+    topDiv.appendChild(topRow);
     topDiv.appendChild(title);
 
     const bottomDiv = document.createElement("div");
@@ -1029,7 +1473,7 @@ if (currentTab === "ROUTES") {
       if (item.description_ko) {
         const koBadge = document.createElement("div");
         koBadge.className = "ko-tag";
-        koBadge.textContent = "● 한글 해설 제공";
+        koBadge.textContent = "● 한글 해설";
         badgeRow.appendChild(koBadge);
       }
 
@@ -1046,7 +1490,15 @@ if (currentTab === "ROUTES") {
   artworkGrid.appendChild(fragment);
 }
 
-// Render or update CC BY-SA 4.0 credit caption directly beneath modalImg
+// --- Modal: Credit, Personal Checklist & Offline TTS Audio Guide ---
+function stopSpeech() {
+  if ("speechSynthesis" in window) {
+    try {
+      window.speechSynthesis.cancel();
+    } catch (_) {}
+  }
+}
+
 function updateModalCredit(item) {
   const modalImg = document.getElementById("modalImg");
   if (!modalImg || !modalImg.parentNode) return;
@@ -1066,7 +1518,6 @@ function updateModalCredit(item) {
 
   creditBox.style.display = "block";
   creditBox.innerHTML = "";
-
   creditBox.appendChild(document.createTextNode("이미지 출처: Bayerische Staatsgemäldesammlungen ("));
 
   const ccLink = document.createElement("a");
@@ -1089,7 +1540,158 @@ function updateModalCredit(item) {
   }
 }
 
+function renderModalPersonalBar(item) {
+  const descBox = document.getElementById("modalDesc");
+  if (!descBox || !descBox.parentNode) return;
+
+  let bar = document.getElementById("modalPersonalBar");
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.id = "modalPersonalBar";
+    bar.className = "modal-personal-bar";
+    descBox.parentNode.insertBefore(bar, descBox);
+  }
+
+  const idStr = String(item.inventory_id);
+  const updateButtons = () => {
+    const isWished = wishlistIds.has(idStr);
+    const isDone = visitedIds.has(idStr);
+    bar.innerHTML = "";
+
+    const wishBtn = document.createElement("button");
+    wishBtn.type = "button";
+    wishBtn.className = isWished ? "modal-personal-btn active-wish" : "modal-personal-btn";
+    wishBtn.textContent = isWished ? "★ 위시리스트에 저장됨" : "☆ 위시리스트 찜하기";
+    wishBtn.onclick = () => {
+      toggleWishlist(idStr);
+      updateButtons();
+    };
+
+    const doneBtn = document.createElement("button");
+    doneBtn.type = "button";
+    doneBtn.className = isDone ? "modal-personal-btn active-visited" : "modal-personal-btn";
+    doneBtn.textContent = isDone ? "✓ 관람 완료 체크됨" : "○ 관람 완료 표시";
+    doneBtn.onclick = () => {
+      toggleVisited(idStr);
+      updateButtons();
+    };
+
+    bar.appendChild(wishBtn);
+    bar.appendChild(doneBtn);
+  };
+
+  updateButtons();
+}
+
+function renderModalTtsBar(item) {
+  const descBox = document.getElementById("modalDesc");
+  if (!descBox || !descBox.parentNode) return;
+
+  let ttsBar = document.getElementById("modalTtsBar");
+  if (!ttsBar) {
+    ttsBar = document.createElement("div");
+    ttsBar.id = "modalTtsBar";
+    ttsBar.className = "modal-tts-bar";
+    descBox.parentNode.insertBefore(ttsBar, descBox);
+  }
+
+  ttsBar.innerHTML = "";
+
+  if (!("speechSynthesis" in window)) {
+    ttsBar.innerHTML = '<span class="tts-status">이 브라우저에서는 음성 합성을 지원하지 않습니다.</span>';
+    return;
+  }
+
+  const statusSpan = document.createElement("span");
+  statusSpan.className = "tts-status";
+  statusSpan.textContent = "오프라인 음성 가이드";
+
+  const playBtn = document.createElement("button");
+  playBtn.type = "button";
+  playBtn.className = "tts-btn";
+  playBtn.textContent = "▶ 음성 해설 듣기";
+
+  const pauseBtn = document.createElement("button");
+  pauseBtn.type = "button";
+  pauseBtn.className = "tts-btn secondary";
+  pauseBtn.textContent = "⏸ 일시정지";
+
+  const stopBtn = document.createElement("button");
+  stopBtn.type = "button";
+  stopBtn.className = "tts-btn secondary";
+  stopBtn.textContent = "■ 정지";
+
+  const rateBtn = document.createElement("button");
+  rateBtn.type = "button";
+  rateBtn.className = "tts-btn secondary";
+  rateBtn.textContent = `${ttsRate.toFixed(1)}x`;
+
+  playBtn.onclick = () => {
+    const synth = window.speechSynthesis;
+    if (synth.paused) {
+      synth.resume();
+      statusSpan.textContent = "재생 중...";
+      return;
+    }
+
+    synth.cancel();
+    const titlePart = item.title_ko || item.title_en || "";
+    const artistPart = item.artist_ko || item.artist_en || "";
+    const bodyPart = descBox.textContent || "";
+    const fullText = `${titlePart}. 작가: ${artistPart}. ${bodyPart}`;
+
+    const utterance = new SpeechSynthesisUtterance(fullText);
+    utterance.lang = "ko-KR";
+    utterance.rate = ttsRate;
+
+    const voices = synth.getVoices();
+    const koVoice = voices.find((v) => v.lang && v.lang.toLowerCase().includes("ko"));
+    if (koVoice) utterance.voice = koVoice;
+
+    utterance.onstart = () => {
+      statusSpan.textContent = "재생 중...";
+    };
+    utterance.onend = () => {
+      statusSpan.textContent = "재생 완료";
+    };
+    utterance.onerror = () => {
+      statusSpan.textContent = "재생 중단됨";
+    };
+
+    synth.speak(utterance);
+  };
+
+  pauseBtn.onclick = () => {
+    const synth = window.speechSynthesis;
+    if (synth.speaking && !synth.paused) {
+      synth.pause();
+      statusSpan.textContent = "일시정지됨";
+    }
+  };
+
+  stopBtn.onclick = () => {
+    stopSpeech();
+    statusSpan.textContent = "정지됨";
+  };
+
+  rateBtn.onclick = () => {
+    ttsRate = ttsRate === 1.0 ? 1.2 : ttsRate === 1.2 ? 1.4 : 1.0;
+    rateBtn.textContent = `${ttsRate.toFixed(1)}x`;
+    if (window.speechSynthesis.speaking) {
+      playBtn.click();
+    }
+  };
+
+  ttsBar.appendChild(playBtn);
+  ttsBar.appendChild(pauseBtn);
+  ttsBar.appendChild(stopBtn);
+  ttsBar.appendChild(rateBtn);
+  ttsBar.appendChild(statusSpan);
+}
+
 function openModal(item) {
+  stopSpeech();
+
   const highlight = isMasterpiece(item);
   const isNp = isNeuePinakothek(item);
   const originSuffix = isNp ? " · 노이 피나코테크 임시전시" : "";
@@ -1128,6 +1730,9 @@ function openModal(item) {
       "하단 공식 상세 페이지 링크에서 독일어/영어 원문 정보를 확인할 수 있습니다.";
   }
 
+  renderModalPersonalBar(item);
+  renderModalTtsBar(item);
+
   const linkEl = document.getElementById("modalLink");
   if (item.detail_url) {
     linkEl.href = item.detail_url;
@@ -1139,9 +1744,14 @@ function openModal(item) {
   detailModal.classList.add("open");
 }
 
-closeModalBtn.onclick = () => detailModal.classList.remove("open");
+function closeModal() {
+  stopSpeech();
+  detailModal.classList.remove("open");
+}
+
+closeModalBtn.onclick = closeModal;
 detailModal.onclick = (e) => {
-  if (e.target === detailModal) detailModal.classList.remove("open");
+  if (e.target === detailModal) closeModal();
 };
 
 floorSelect.onchange = () => {
@@ -1163,20 +1773,16 @@ function applyData(payload, sourceLabel) {
 }
 
 async function initApp() {
+  loadUserLists();
   injectAppStyles();
-  const mpCheckbox = masterpieceOnlyCheckbox || ensureMasterpieceFilterControl();
-  if (mpCheckbox) {
-    mpCheckbox.onchange = renderArtworks;
-  }
-  const colSelect = ensureCollectionFilterControl();
-  if (colSelect) {
-    colSelect.onchange = () => {
-      populateRoomOptions();
-      renderArtworks();
-    };
-  }
+  ensureExtendedFilterControls();
   ensureNavigationAndGuideContainers();
   ensureLicenseFooter();
+
+  // Preload browser speech voices for iOS Safari
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.getVoices();
+  }
 
   // 1. Load cached JSON immediately for instant startup & offline resilience
   const cachedRaw = localStorage.getItem(CACHE_KEY);
