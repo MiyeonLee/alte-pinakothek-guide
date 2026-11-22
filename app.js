@@ -1588,6 +1588,13 @@ function renderModalTtsBar(item) {
   if (!descBox || !descBox.parentNode) return;
 
   let ttsBar = document.getElementById("modalTtsBar");
+
+  // 한글 도슨트 해설이 없는 작품이면 기존 플레이어 바 제거 후 종료
+  if (!item.description_ko || !item.description_ko.trim()) {
+    if (ttsBar) ttsBar.remove();
+    return;
+  }
+
   if (!ttsBar) {
     ttsBar = document.createElement("div");
     ttsBar.id = "modalTtsBar";
@@ -1637,7 +1644,7 @@ function renderModalTtsBar(item) {
     synth.cancel();
     const titlePart = item.title_ko || item.title_en || "";
     const artistPart = item.artist_ko || item.artist_en || "";
-    const bodyPart = descBox.textContent || "";
+    const bodyPart = item.description_ko;
     const fullText = `${titlePart}. 작가: ${artistPart}. ${bodyPart}`;
 
     const utterance = new SpeechSynthesisUtterance(fullText);

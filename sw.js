@@ -1,4 +1,4 @@
-const STATIC_CACHE = "ap-docent-static-v9";
+const STATIC_CACHE = "ap-docent-static-v10";
 const CACHE_PREFIX = "ap-docent-static-";
 const ASSETS = [
   "./",
